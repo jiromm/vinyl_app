@@ -1,0 +1,27 @@
+body {
+	margin: 58px 0;
+}
+.relative {
+	position: relative;
+}
+.stick {
+	position: fixed;
+	padding: 6px 10px;
+	background-color: #f1f1f1;
+	left: 0;
+	right: 0;
+}
+.stick-head {
+	top: 0;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 6px;
+}
+.stick-foot {
+	bottom: 0;
+	border-top: 1px solid #ddd;
+	margin-top: 6px;
+}
+.null {
+	margin: 0;
+	padding: 0;
+}
