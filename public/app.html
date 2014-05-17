@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/idangerous.swiper.css">
 	<link rel="stylesheet" href="css/main.css">
 
 	<!--[if lt IE 9]>
@@ -49,38 +50,48 @@
 					<div class="row">
 						<div class="well-sm">
 							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
-									<img src="http://lorempixel.com/100/100/sports/3" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
-									<img src="http://lorempixel.com/100/100/sports/2" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/1">
 									<img src="http://lorempixel.com/100/100/sports/1" width="100%">
 								</a>
 							</div>
 							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/2">
+									<img src="http://lorempixel.com/100/100/sports/2" width="100%">
+								</a>
+							</div>
+							<div class="col-xs-4 col-md-3">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/3">
+									<img src="http://lorempixel.com/100/100/sports/3" width="100%">
+								</a>
+							</div>
+							<div class="col-xs-4 col-md-3">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/4">
 									<img src="http://lorempixel.com/100/100/sports/4" width="100%">
 								</a>
 							</div>
 							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/5">
 									<img src="http://lorempixel.com/100/100/sports/5" width="100%">
 								</a>
 							</div>
 							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/6">
 									<img src="http://lorempixel.com/100/100/sports/6" width="100%">
 								</a>
 							</div>
 							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/7">
 									<img src="http://lorempixel.com/100/100/sports/7" width="100%">
+								</a>
+							</div>
+							<div class="col-xs-4 col-md-3">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/8">
+									<img src="http://lorempixel.com/100/100/sports/8" width="100%">
+								</a>
+							</div>
+							<div class="col-xs-4 col-md-3">
+								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/9">
+									<img src="http://lorempixel.com/100/100/sports/9" width="100%">
 								</a>
 							</div>
 						</div>
@@ -90,7 +101,7 @@
 					<div class="well-sm text-center">
 						<p class="text-muted">Be sure to upload your house captured from the front only...</p>
 						<a class="btn btn-lg btn-primary">
-							<i class="glyphicon glyphicon-magnet"></i>
+							<i class="glyphicon glyphicon-cloud-upload"></i>
 							Upload Image
 						</a>
 					</div>
@@ -101,26 +112,44 @@
 
 	<div class="row page page2">
 		<div class="col-sm-12">
-			page 2
+			<div class="house-container">
+				<img class="img-base">
+			</div>
+
+			<div class="fences">
+
+			</div>
+
+			<div class="fence-categories">
+				<div class="swiper-container">
+					<ul class="list-inline swiper-wrapper">
+						<li class="swiper-slide text-center"><a href="#">Category 1</a></li>
+						<li class="swiper-slide text-center"><a href="#">Category 2</a></li>
+						<li class="swiper-slide text-center"><a href="#">Category 3</a></li>
+						<li class="swiper-slide text-center"><a href="#">Category 4</a></li>
+						<li class="swiper-slide text-center"><a href="#">Category 5</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 
 	<div class="row page page3">
 		<div class="col-sm-12">
-			page 3
+			with sauerkraut drink sour milk
 		</div>
 	</div>
 
 	<div class="row page page4">
 		<div class="col-sm-12">
-			page 4
+			ho-ho-ho! fight of life
 		</div>
 	</div>
 
 	<div class="stick stick-foot">
 		<ul class="null pager">
-			<li class="previous"><a href="#">&larr; Prev</a></li>
-			<li class="next"><a href="#">Next &rarr;</a></li>
+			<li class="previous"><button class="btn btn-default pull-left">&larr; Back</button></li>
+			<li class="next"><button class="btn btn-default pull-right">Next &rarr;</button></li>
 		</ul>
 	</div>
 </div>
@@ -128,6 +157,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 <script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/idangerous.swiper.min.js"></script>
 <script src="js/class.js"></script>
 <script src="js/main.js"></script>
 </body>

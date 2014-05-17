@@ -1,6 +1,9 @@
 body {
 	margin: 58px 0;
 }
+a, button {
+	outline: 0 !important;
+}
 .relative {
 	position: relative;
 }
@@ -15,13 +18,59 @@ body {
 	top: 0;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 6px;
+	z-index: 999;
 }
 .stick-foot {
 	bottom: 0;
 	border-top: 1px solid #ddd;
 	margin-top: 6px;
+	z-index: 999;
 }
 .null {
 	margin: 0;
 	padding: 0;
 }
+.thumbnail.active {
+	background-color: #428BCA;
+}
+.pager button {
+	border-radius: 15px;
+}
+
+.house-container {
+	position: relative;
+}
+.img-base {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.fence-categories {
+	position: fixed;
+	bottom: 47px;
+	left: 0;
+	z-index: 888;
+	border-top: 1px solid #ddd;
+	width: 100%;
+}
+.fence-categories li {
+	padding: 5px 2px;
+}
+
+/* Specify Swiper's Size: */
+.fence-categories .swiper-container,
+.fence-categories .swiper-slide {
+	width: 120px;
+	height: 32px;
+}
+.fence-categories a {
+	padding: 0 10px;
+}
+.fence-categories a.active {
+	font-weight: bold;
+}
+.fence-categories a:hover {
+	text-decoration: none;
+}
+
