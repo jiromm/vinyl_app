@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Test guestures</title>
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <style type="text/css">
+		    .target {
+			    width: 100%;
+			    height: 100px;
+			    background: red;
+		    }
+		    .log p {
+			    font: 10px "Courier New", "Trebuchet MS", serif;
+		    }
+	    </style>
+    </head>
+    <body>
+	    <div class="container">
+		    <div class="row">
+				<div class="swipe target"></div>
+			</div>
+
+		    <div class="row">
+			    <div class="log"></div>
+		    </div>
+	    </div>
+
+        <script src="js/vendor/quo.js"></script>
+        <script>
+	        $$(document).ready(function() {
+		        $$('.log').append('<p>initiated</p>');
+
+		        $$('.swipe').swipe(function() {
+			        $$('.log').append('<p>swipe</p>');
+		        }).swiping(function() {
+			        $$('.log').append('<p>swiping</p>');
+		        }).swipeLeft(function() {
+			        $$('.log').append('<p>swipe left</p>');
+		        }).swipeRight(function() {
+			        $$('.log').append('<p>swipe right</p>');
+		        }).swipeUp(function() {
+			        $$('.log').append('<p>swipe up</p>');
+		        }).swipeDown(function() {
+			        $$('.log').append('<p>swipe down</p>');
+		        }).pinchIn(function() {
+			        $$('.log').append('<p>pinch in</p>');
+		        }).pinchOut(function() {
+			        $$('.log').append('<p>pinch out</p>');
+		        });
+	        });
+        </script>
+    </body>
+</html>
