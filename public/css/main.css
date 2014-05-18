@@ -4,6 +4,19 @@ body {
 a, button {
 	outline: 0 !important;
 }
+.locker {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: rgba(0,0,0,.8);
+	text-align: center;
+}
+.locker .message {
+	color: #ffc300;
+	text-shadow: #000;
+	padding-top: 25px;
+}
 .relative {
 	position: relative;
 }
@@ -46,6 +59,7 @@ a, button {
 	left: 0;
 	width: 100%;
 }
+
 .fence-categories {
 	position: fixed;
 	bottom: 47px;
@@ -53,12 +67,12 @@ a, button {
 	z-index: 888;
 	border-top: 1px solid #ddd;
 	width: 100%;
+	background-color: #fff;
 }
-.fence-categories li {
+.fence-categories .swiper-slide {
 	padding: 5px 2px;
+	text-align: center;
 }
-
-/* Specify Swiper's Size: */
 .fence-categories .swiper-container,
 .fence-categories .swiper-slide {
 	width: 120px;
@@ -72,5 +86,33 @@ a, button {
 }
 .fence-categories a:hover {
 	text-decoration: none;
+}
+
+.fences {
+	position: fixed;
+	bottom: 80px;
+	left: 0;
+	z-index: 889;
+	border-top: 1px solid #ddd;
+	width: 100%;
+	background-color: #fff;
+	box-shadow: inset 0 -2px 5px #eee;
+}
+.fences .swiper-container,
+.fences .swiper-slide {
+	width: 120px;
+	height: 50px;
+}
+.fences img {
+	margin: 5px;
+}
+.fences .swiper-slide {
+	text-align: center;
+}
+.fences .swiper-slide:hover {
+	cursor: pointer;
+}
+.fences .swiper-slide.active {
+	background-color: #eee;
 }
 
