@@ -15,15 +15,20 @@
 			    height: 100px;
 			    background: red;
 		    }
-		    .log p {
-			    font: 10px "Courier New", "Trebuchet MS", serif;
+		    .log b {
+			    font-size: 10px;
+			    padding: 2px;
+			    margin: 1px;
+			    background: #ccc;
+			    color: #555;
+			    display: block;
 		    }
 	    </style>
     </head>
     <body>
 	    <div class="container">
 		    <div class="row">
-				<div class="swipe target"></div>
+				<div class="target" id="target"></div>
 			</div>
 
 		    <div class="row">
@@ -31,27 +36,61 @@
 		    </div>
 	    </div>
 
-        <script src="js/vendor/quo.js"></script>
+        <script src="js/vendor/jquery-1.11.0.min.js"></script>
+        <script src="js/vendor/hammer.min.js"></script>
         <script>
-	        $$(document).ready(function() {
-		        $$('.log').append('<p>initiated</p>');
-
-		        $$('.swipe').swipe(function() {
-			        $$('.log').append('<p>swipe</p>');
-		        }).swiping(function() {
-			        $$('.log').append('<p>swiping</p>');
-		        }).swipeLeft(function() {
-			        $$('.log').append('<p>swipe left</p>');
-		        }).swipeRight(function() {
-			        $$('.log').append('<p>swipe right</p>');
-		        }).swipeUp(function() {
-			        $$('.log').append('<p>swipe up</p>');
-		        }).swipeDown(function() {
-			        $$('.log').append('<p>swipe down</p>');
-		        }).pinchIn(function() {
-			        $$('.log').append('<p>pinch in</p>');
-		        }).pinchOut(function() {
-			        $$('.log').append('<p>pinch out</p>');
+	        $(function() {
+		        var element = document.getElementById('target');
+		        var hammertime = Hammer(element).on("tap", function(event) {
+//			        $('.log').append('<b>tap</b>')
+		        }).on("hold", function(event) {
+			        $('.log').append('<b>hold</b>')
+		        }).on("doubletap", function(event) {
+			        $('.log').append('<b>doubletap</b>')
+		        }).on("drag", function(event) {
+//			        $('.log').append('<b>drag</b>')
+		        }).on("dragstart", function(event) {
+//			        $('.log').append('<b>dragstart</b>')
+		        }).on("dragend", function(event) {
+//			        $('.log').append('<b>dragend</b>')
+		        }).on("dragup", function(event) {
+//			        $('.log').append('<b>dragup</b>')
+		        }).on("dragdown", function(event) {
+//			        $('.log').append('<b>dragdown</b>')
+		        }).on("dragleft", function(event) {
+//			        $('.log').append('<b>dragleft</b>')
+		        }).on("dragright", function(event) {
+//			        $('.log').append('<b>dragright</b>')
+		        }).on("swipe", function(event) {
+//			        $('.log').append('<b>swipe</b>')
+		        }).on("swipeup", function(event) {
+			        $('.log').append('<b>swipeup</b>')
+		        }).on("swipedown", function(event) {
+			        $('.log').append('<b>swipedown</b>')
+		        }).on("swipeleft", function(event) {
+			        $('.log').append('<b>swipeleft</b>')
+		        }).on("swiperight", function(event) {
+			        $('.log').append('<b>swiperight</b>')
+		        }).on("transform", function(event) {
+//			        $('.log').append('<b>transform</b>')
+		        }).on("transformstart", function(event) {
+//			        $('.log').append('<b>transformstart</b>')
+		        }).on("transformend", function(event) {
+//			        $('.log').append('<b>transformend</b>')
+		        }).on("rotate", function(event) {
+			        $('.log').append('<b>rotate</b>')
+		        }).on("pinch", function(event) {
+//			        $('.log').append('<b>pinch</b>')
+		        }).on("pinchin", function(event) {
+			        $('.log').append('<b>pinchin</b>')
+		        }).on("pinchout", function(event) {
+			        $('.log').append('<b>pinchout</b>')
+		        }).on("touch", function(event) {
+//			        $('.log').append('<b>touch</b>')
+		        }).on("release", function(event) {
+//			        $('.log').append('<b>release</b>')
+		        }).on("gesture", function(event) {
+//			        $('.log').append('<b>gesture</b>')
 		        });
 	        });
         </script>

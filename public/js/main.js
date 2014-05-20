@@ -169,7 +169,8 @@ var App = Class({
 		this.thumbnails = $('#choose-houses').find('.thumbnail');
 		this.fences = $('.fences').find('.swiper-slide');
 
-		this.imgBase = $('.house-container').find('.img-base');
+		this.houseContainer = $('.house-container');
+		this.imgBase = this.houseContainer.find('.img-base');
 	},
 
 	initialize: function() {
@@ -312,6 +313,10 @@ var App = Class({
 
 			window.app.getFences().removeClass('active');
 			$(this).addClass('active');
+
+			window.app.initDrawFence(
+				$(this).find('img').attr('data-fence-id')
+			);
 		});
 	},
 	selectHouse: function(thumb) {
@@ -339,8 +344,6 @@ var App = Class({
 
 		switch (this.step) {
 			case 1:
-				break;
-			case 2:
 				this.initChooseHouse();
 
 				break;
@@ -350,7 +353,14 @@ var App = Class({
 				break;
 		}
 	},
+	initDrawFence: function(fenceId) {
+		this.houseContainer.find('.fence-covered').attr('src', 'http://lorempixel.com/500/300/sports/2');
+		$('.fence-draggable').udraggable();
+	},
 	initChooseHouse: function() {
+		// do nothing now
+	},
+	initChooseFence: function() {
 		this.imgBase.attr('src', this.houseUrl);
 
 		var newSlide = null;
@@ -365,9 +375,6 @@ var App = Class({
 		}
 
 		this.getCategories().eq(0).trigger('click');
-	},
-	initChooseFence: function() {
-
 	},
 	activateNext: function(status) {
 		this.next.prop('disabled', !status);

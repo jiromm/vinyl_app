@@ -58,6 +58,16 @@ a, button {
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 666;
+}
+.fence-draggable {
+	position: absolute;
+	z-index: 777;
+	width: 50%;
+	height: 20%;
+}
+.fence-covered {
+	width: 100%;
 }
 
 .fence-categories {
@@ -115,4 +125,3 @@ a, button {
 .fences .swiper-slide.active {
 	background-color: #eee;
 }
-
