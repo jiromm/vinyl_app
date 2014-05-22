@@ -58,23 +58,25 @@ a, button {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 666;
+	z-index: 6;
 }
 .fence-draggable {
 	position: absolute;
-	z-index: 777;
-	width: 50%;
-	height: 20%;
+	display: inline-block;
+	z-index: 7;
+	width: 50px;
+	height: 30px;
 }
-.fence-covered {
+.fence-draggable img {
 	width: 100%;
+	height: 100%;
 }
 
 .fence-categories {
 	position: fixed;
 	bottom: 47px;
 	left: 0;
-	z-index: 888;
+	z-index: 8;
 	border-top: 1px solid #ddd;
 	width: 100%;
 	background-color: #fff;
@@ -102,7 +104,7 @@ a, button {
 	position: fixed;
 	bottom: 80px;
 	left: 0;
-	z-index: 889;
+	z-index: 9;
 	border-top: 1px solid #ddd;
 	width: 100%;
 	background-color: #fff;

@@ -31,23 +31,38 @@ var App = Class({
 			fences: {
 				1: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/animals/1'
+					icon: 'http://lorempixel.com/60/40/animals/1',
+					original: 'http://lorempixel.com/300/120/animals/1',
+					width: 300,
+					height: 120
 				},
 				2: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/animals/2'
+					icon: 'http://lorempixel.com/60/40/animals/2',
+					original: 'http://lorempixel.com/300/120/animals/2',
+					width: 400,
+					height: 150
 				},
 				3: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/animals/3'
+					icon: 'http://lorempixel.com/60/40/animals/3',
+					original: 'http://lorempixel.com/300/120/animals/3',
+					width: 330,
+					height: 150
 				},
 				4: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/animals/4'
+					icon: 'http://lorempixel.com/60/40/animals/4',
+					original: 'http://lorempixel.com/300/120/animals/4',
+					width: 230,
+					height: 100
 				},
 				5: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/animals/5'
+					icon: 'http://lorempixel.com/60/40/animals/5',
+					original: 'http://lorempixel.com/300/120/animals/5',
+					width: 310,
+					height: 200
 				}
 			}
 		},
@@ -56,23 +71,38 @@ var App = Class({
 			fences: {
 				1: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nature/1'
+					icon: 'http://lorempixel.com/60/40/nature/1',
+					original: 'http://lorempixel.com/260/140/nature/1',
+					width: 310,
+					height: 200
 				},
 				2: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nature/2'
+					icon: 'http://lorempixel.com/60/40/nature/2',
+					original: 'http://lorempixel.com/260/140/nature/2',
+					width: 310,
+					height: 200
 				},
 				3: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nature/3'
+					icon: 'http://lorempixel.com/60/40/nature/3',
+					original: 'http://lorempixel.com/260/140/nature/3',
+					width: 310,
+					height: 200
 				},
 				4: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nature/4'
+					icon: 'http://lorempixel.com/60/40/nature/4',
+					original: 'http://lorempixel.com/260/140/nature/4',
+					width: 310,
+					height: 200
 				},
 				5: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nature/5'
+					icon: 'http://lorempixel.com/60/40/nature/5',
+					original: 'http://lorempixel.com/260/140/nature/5',
+					width: 310,
+					height: 200
 				}
 			}
 		},
@@ -81,23 +111,38 @@ var App = Class({
 			fences: {
 				1: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nightlife/1'
+					icon: 'http://lorempixel.com/60/40/nightlife/1',
+					original: 'http://lorempixel.com/100/40/nightlife/1',
+					width: 310,
+					height: 200
 				},
 				2: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nightlife/2'
+					icon: 'http://lorempixel.com/60/40/nightlife/2',
+					original: 'http://lorempixel.com/100/40/nightlife/2',
+					width: 310,
+					height: 200
 				},
 				3: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nightlife/3'
+					icon: 'http://lorempixel.com/60/40/nightlife/3',
+					original: 'http://lorempixel.com/100/40/nightlife/3',
+					width: 310,
+					height: 200
 				},
 				4: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nightlife/4'
+					icon: 'http://lorempixel.com/60/40/nightlife/4',
+					original: 'http://lorempixel.com/100/40/nightlife/4',
+					width: 310,
+					height: 200
 				},
 				5: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/nightlife/5'
+					icon: 'http://lorempixel.com/60/40/nightlife/5',
+					original: 'http://lorempixel.com/100/40/nightlife/5',
+					width: 310,
+					height: 200
 				}
 			}
 		},
@@ -106,23 +151,38 @@ var App = Class({
 			fences: {
 				1: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/food/1'
+					icon: 'http://lorempixel.com/60/40/food/1',
+					original: 'http://lorempixel.com/110/30/food/1',
+					width: 310,
+					height: 200
 				},
 				2: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/food/2'
+					icon: 'http://lorempixel.com/60/40/food/2',
+					original: 'http://lorempixel.com/110/30/food/2',
+					width: 310,
+					height: 200
 				},
 				3: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/food/3'
+					icon: 'http://lorempixel.com/60/40/food/3',
+					original: 'http://lorempixel.com/110/30/food/3',
+					width: 310,
+					height: 200
 				},
 				4: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/food/4'
+					icon: 'http://lorempixel.com/60/40/food/4',
+					original: 'http://lorempixel.com/110/30/food/4',
+					width: 310,
+					height: 200
 				},
 				5: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/food/5'
+					icon: 'http://lorempixel.com/60/40/food/5',
+					original: 'http://lorempixel.com/110/30/food/5',
+					width: 310,
+					height: 200
 				}
 			}
 		},
@@ -131,23 +191,33 @@ var App = Class({
 			fences: {
 				1: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/city/1'
+					icon: 'http://lorempixel.com/60/40/city/1',
+					width: 310,
+					height: 200
 				},
 				2: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/city/2'
+					icon: 'http://lorempixel.com/60/40/city/2',
+					width: 310,
+					height: 200
 				},
 				3: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/city/3'
+					icon: 'http://lorempixel.com/60/40/city/3',
+					width: 310,
+					height: 200
 				},
 				4: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/city/4'
+					icon: 'http://lorempixel.com/60/40/city/4',
+					width: 310,
+					height: 200
 				},
 				5: {
 					name: 'Some name',
-					url: 'http://lorempixel.com/60/40/city/5'
+					icon: 'http://lorempixel.com/60/40/city/5',
+					width: 310,
+					height: 200
 				}
 			}
 		}
@@ -171,6 +241,7 @@ var App = Class({
 
 		this.houseContainer = $('.house-container');
 		this.imgBase = this.houseContainer.find('.img-base');
+		this.draggable = $('.fence-draggable');
 	},
 
 	initialize: function() {
@@ -184,6 +255,23 @@ var App = Class({
 		this.activateNext(false);
 
 		this.initPlugins();
+
+		this.preloadFences();
+
+		this.draggable.udraggable();
+	},
+	preloadFences: function() {
+		var urlList = [];
+
+		for (var categoryId in this.fenceArchive) {
+			for (var fenceId in this.fenceArchive[categoryId].fences) {
+				urlList[urlList.length] = this.fenceArchive[categoryId].fences[fenceId].original;
+			}
+		}
+
+		$.imageloader({
+			urls: urlList
+		});
 	},
 	initPlugins: function() {
 		var catSwipeElement = $('.fence-categories .swiper-container'),
@@ -293,7 +381,7 @@ var App = Class({
 			if (window.app.fenceArchive.hasOwnProperty(catId)) {
 				for (var item in window.app.fenceArchive[catId].fences) {
 					if (window.app.fenceArchive[catId].fences.hasOwnProperty(item)) {
-						newSlide = window.app.fencesSwiper.createSlide('<img src="' + window.app.fenceArchive[catId].fences[item].url + '" data-fence-id="' + item + '">');
+						newSlide = window.app.fencesSwiper.createSlide('<img src="' + window.app.fenceArchive[catId].fences[item].icon + '" data-category-id="' + catId + '" data-fence-id="' + item + '">');
 						newSlide.append();
 					} else {
 						throw new DOMException('Archive was empty in category layer.');
@@ -315,6 +403,7 @@ var App = Class({
 			$(this).addClass('active');
 
 			window.app.initDrawFence(
+				$(this).find('img').attr('data-category-id'),
 				$(this).find('img').attr('data-fence-id')
 			);
 		});
@@ -353,15 +442,30 @@ var App = Class({
 				break;
 		}
 	},
-	initDrawFence: function(fenceId) {
-		this.houseContainer.find('.fence-covered').attr('src', 'http://lorempixel.com/500/300/sports/2');
-		$('.fence-draggable').udraggable();
+	initDrawFence: function(categoryId, fenceId) {
+		var selectedFence = this.fenceArchive[categoryId].fences[fenceId],
+			widthCoeff = this.imgBase.width() / 700,
+			heightCoeff = this.imgBase.height() / 420;
+
+		this.houseContainer.find('.fence-covered').attr('src', selectedFence.original).animate({
+			width: widthCoeff * selectedFence.width,
+			height: heightCoeff * selectedFence.height
+		});
+
+		this.houseContainer.find('.fence-covered').load(function() {
+			this.houseContainer.find('.fence-covered').css({
+				opacity: 1
+			});
+		});
 	},
 	initChooseHouse: function() {
 		// do nothing now
 	},
 	initChooseFence: function() {
 		this.imgBase.attr('src', this.houseUrl);
+
+		// Remove available fences
+		window.app.fenceCategoriesSwiper.removeAllSlides();
 
 		var newSlide = null;
 
@@ -374,7 +478,9 @@ var App = Class({
 			}
 		}
 
-		this.getCategories().eq(0).trigger('click');
+		this.imgBase.load(function() {
+			window.app.getCategories().eq(0).trigger('click');
+		});
 	},
 	activateNext: function(status) {
 		this.next.prop('disabled', !status);
