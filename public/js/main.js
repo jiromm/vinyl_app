@@ -1,30 +1,32 @@
 var App = Class({
 	step: null,
-	vars: {
-		locker: null,
-
-		nav: null,
-
-		nav_step1: null,
-		nav_step2: null,
-		nav_step3: null,
-
-		prev: null,
-		next: null,
-
-		pages: null,
-		thumbnails: null,
-		categories: null,
-		fences: null,
-
-		houseUrl: false,
-		vinylUrl: false,
-
-		imgBase: false,
-
-		fenceCategoriesSwiper: false,
-		fencesSwiper: false
-	},
+//	vars: {
+//		locker: null,
+//
+//		nav: null,
+//
+//		nav_step1: null,
+//		nav_step2: null,
+//		nav_step3: null,
+//
+//		prev: null,
+//		next: null,
+//
+//		pages: null,
+//		thumbnails: null,
+//		categories: null,
+//		fences: null,
+//		fencesChoice: null,
+//		fencesTools: null,
+//
+//		houseUrl: false,
+//		vinylUrl: false,
+//
+//		imgBase: false,
+//
+//		fenceCategoriesSwiper: false,
+//		fencesSwiper: false
+//	},
 	fenceArchive: {
 		1: {
 			name: 'Category 1',
@@ -192,30 +194,35 @@ var App = Class({
 				1: {
 					name: 'Some name',
 					icon: 'http://lorempixel.com/60/40/city/1',
+					original: 'http://lorempixel.com/110/30/food/5',
 					width: 310,
 					height: 200
 				},
 				2: {
 					name: 'Some name',
 					icon: 'http://lorempixel.com/60/40/city/2',
+					original: 'http://lorempixel.com/110/30/food/5',
 					width: 310,
 					height: 200
 				},
 				3: {
 					name: 'Some name',
 					icon: 'http://lorempixel.com/60/40/city/3',
+					original: 'http://lorempixel.com/110/30/food/5',
 					width: 310,
 					height: 200
 				},
 				4: {
 					name: 'Some name',
 					icon: 'http://lorempixel.com/60/40/city/4',
+					original: 'http://lorempixel.com/110/30/food/5',
 					width: 310,
 					height: 200
 				},
 				5: {
 					name: 'Some name',
 					icon: 'http://lorempixel.com/60/40/city/5',
+					original: 'http://lorempixel.com/110/30/food/5',
 					width: 310,
 					height: 200
 				}
@@ -240,8 +247,11 @@ var App = Class({
 		this.fences = $('.fences').find('.swiper-slide');
 
 		this.houseContainer = $('.house-container');
-		this.imgBase = this.houseContainer.find('.img-base');
+		this.imgBase = $('.img-base');
 		this.draggable = $('.fence-draggable');
+		this.fenceChoice = $('.fence-choice');
+		this.fenceTools = $('.fence-tools');
+		this.fenceEdit = $('.fence-edit');
 	},
 
 	initialize: function() {
@@ -259,6 +269,10 @@ var App = Class({
 		this.preloadFences();
 
 		this.draggable.udraggable();
+
+		// Debug only
+//		this.setStep(2);
+//		this.activateTools(true);
 	},
 	preloadFences: function() {
 		var urlList = [];
@@ -290,6 +304,14 @@ var App = Class({
 			freeMode: true,
 			freeModeFluid: true,
 			slidesPerView: 4
+		});
+
+		$(".fence-zoomer").noUiSlider({
+			start: 0,
+			range: {
+				'min': -40,
+				'max': 60
+			}
 		});
 	},
 	bindEvents: function() {
@@ -364,6 +386,7 @@ var App = Class({
 			}
 		});
 
+		// Choose Category
 		body.delegate('.fence-categories a', 'click', function(e) {
 			e.preventDefault();
 
@@ -407,6 +430,17 @@ var App = Class({
 				$(this).find('img').attr('data-fence-id')
 			);
 		});
+
+		// Edit (resize) Fence
+		this.fenceEdit.on('click', function(e) {
+			e.preventDefault();
+
+			if (window.app.isEdited) {
+				window.app.activateTools(false);
+			} else {
+				window.app.activateTools(true);
+			}
+		});
 	},
 	selectHouse: function(thumb) {
 		this.houseUrl = thumb.attr('data-src');
@@ -430,6 +464,8 @@ var App = Class({
 		this.lockPositions();
 		this.showPage(this.step);
 		this.highlightStep(this.step);
+		this.activateTools(false);
+		this.activateFenceEdit(false);
 
 		switch (this.step) {
 			case 1:
@@ -453,7 +489,7 @@ var App = Class({
 		});
 
 		this.houseContainer.find('.fence-covered').load(function() {
-			this.houseContainer.find('.fence-covered').css({
+			window.app.houseContainer.find('.fence-covered').css({
 				opacity: 1
 			});
 		});
@@ -461,7 +497,21 @@ var App = Class({
 	initChooseHouse: function() {
 		// do nothing now
 	},
+	activateTools: function(is) {
+		if (is) {
+			this.isEdited = true;
+			this.fenceTools.show();
+			this.fenceChoice.hide();
+			this.fenceEdit.text('Return');
+		} else {
+			this.isEdited = false;
+			this.fenceTools.hide();
+			this.fenceChoice.show();
+			this.fenceEdit.text('Edit');
+		}
+	},
 	initChooseFence: function() {
+		this.activateFenceEdit(true)
 		this.imgBase.attr('src', this.houseUrl);
 
 		// Remove available fences
@@ -481,6 +531,13 @@ var App = Class({
 		this.imgBase.load(function() {
 			window.app.getCategories().eq(0).trigger('click');
 		});
+	},
+	activateFenceEdit: function(is) {
+		if (is) {
+			this.fenceEdit.show();
+		} else {
+			this.fenceEdit.hide();
+		}
 	},
 	activateNext: function(status) {
 		this.next.prop('disabled', !status);

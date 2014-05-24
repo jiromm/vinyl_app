@@ -72,7 +72,8 @@ a, button {
 	height: 100%;
 }
 
-.fence-categories {
+.fence-categories,
+.fence-tools {
 	position: fixed;
 	bottom: 47px;
 	left: 0;
@@ -98,6 +99,37 @@ a, button {
 }
 .fence-categories a:hover {
 	text-decoration: none;
+}
+.fence-tools {
+	padding: 10px;
+}
+.fence-zoomer-container {
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 0 50px;
+}
+.fence-tools .controls {
+	position: absolute;
+	margin: 5px 10px;
+	font-size: 200%;
+	color: #ccc;
+	top: 0;
+}
+.fence-tools .controls:first-child {
+	left: 0;
+}
+.fence-tools .controls:last-child {
+	right: 0;
+}
+.fence-edit {
+	background-color: #fff;
+	border-color: #d43f3a !important;
+	color: #d43f3a;
+}
+.fence-edit {
+	background-color: #fff;
+	border-color: #d43f3a !important;
+	color: #d43f3a !important;
 }
 
 .fences {
