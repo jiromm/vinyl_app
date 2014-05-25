@@ -252,6 +252,7 @@ var App = Class({
 		this.fenceChoice = $('.fence-choice');
 		this.fenceTools = $('.fence-tools');
 		this.fenceEdit = $('.fence-edit');
+		this.fenceZoomer = $(".fence-zoomer");
 	},
 
 	initialize: function() {
@@ -306,11 +307,12 @@ var App = Class({
 			slidesPerView: 4
 		});
 
-		$(".fence-zoomer").noUiSlider({
-			start: 0,
+		this.fenceZoomer.noUiSlider({
+			start: 1,
+			behaviour: 'slide',
 			range: {
-				'min': -40,
-				'max': 60
+				'min': .6,
+				'max': 1.6
 			}
 		});
 	},
@@ -320,6 +322,8 @@ var App = Class({
 		// Move Prev
 		this.prev.on('click', function(e) {
 			e.preventDefault();
+
+			window.app.vibrate();
 
 			switch (window.app.step) {
 				case 1:
@@ -345,6 +349,8 @@ var App = Class({
 		this.next.on('click', function(e) {
 			e.preventDefault();
 
+			window.app.vibrate();
+
 			switch (window.app.step) {
 				case 1:
 					window.app.setStep(2);
@@ -365,6 +371,8 @@ var App = Class({
 		this.nav.on('click', function(e) {
 			e.preventDefault();
 
+			window.app.vibrate();
+
 			var btn = $(this);
 
 			if (!btn.prop('disabled')) {
@@ -375,6 +383,8 @@ var App = Class({
 		// Choose House
 		this.thumbnails.on('click', function(e) {
 			e.preventDefault();
+
+			window.app.vibrateLong();
 
 			var thumb = $(this);
 
@@ -435,12 +445,62 @@ var App = Class({
 		this.fenceEdit.on('click', function(e) {
 			e.preventDefault();
 
+			window.app.vibrateLong();
+
 			if (window.app.isEdited) {
 				window.app.activateTools(false);
 			} else {
 				window.app.activateTools(true);
 			}
 		});
+
+		// Resize fence
+		this.fenceZoomer.on('slide', function(e) {
+			e.preventDefault();
+
+			var resizeCoeff = $(this).val(),
+				currentWidth = window.app.fence.width * resizeCoeff,
+				currentHeight = window.app.fence.height * resizeCoeff;
+
+//			if (Math.abs(window.app.fence.lastWidth - currentWidth) > 20) {
+//				window.app.houseContainer.find('.fence-covered').animate({
+//					width: currentWidth,
+//					height: currentHeight
+//				}, 'fast');
+//			} else {
+				window.app.houseContainer.find('.fence-covered').css({
+					width: currentWidth,
+					height: currentHeight
+				});
+//			}
+
+			window.app.fence.lastWidth = currentWidth;
+			window.app.fence.lastHeight = currentHeight;
+		})
+
+		// Resize fence
+		this.fenceZoomer.on('tap', function(e) {
+			e.preventDefault();
+
+			var resizeCoeff = $(this).val(),
+				currentWidth = window.app.fence.width * resizeCoeff,
+				currentHeight = window.app.fence.height * resizeCoeff;
+
+//			if (Math.abs(window.app.fence.lastWidth - currentWidth) > 20) {
+				window.app.houseContainer.find('.fence-covered').animate({
+					width: currentWidth,
+					height: currentHeight
+				}, 'fast');
+//			} else {
+//				window.app.houseContainer.find('.fence-covered').css({
+//					width: currentWidth,
+//					height: currentHeight
+//				});
+//			}
+
+			window.app.fence.lastWidth = currentWidth;
+			window.app.fence.lastHeight = currentHeight;
+		})
 	},
 	selectHouse: function(thumb) {
 		this.houseUrl = thumb.attr('data-src');
@@ -479,13 +539,24 @@ var App = Class({
 		}
 	},
 	initDrawFence: function(categoryId, fenceId) {
+		this.fenceZoomer.val(1);
+
 		var selectedFence = this.fenceArchive[categoryId].fences[fenceId],
 			widthCoeff = this.imgBase.width() / 700,
-			heightCoeff = this.imgBase.height() / 420;
+			heightCoeff = this.imgBase.height() / 420,
+			totalWidth = widthCoeff * selectedFence.width,
+			totalHeight = heightCoeff * selectedFence.height;
+
+		this.fence = {
+			width: totalWidth,
+			height: totalHeight,
+			lastWidth: totalWidth,
+			lastHeight: totalHeight
+		};
 
 		this.houseContainer.find('.fence-covered').attr('src', selectedFence.original).animate({
-			width: widthCoeff * selectedFence.width,
-			height: heightCoeff * selectedFence.height
+			width: this.fence.width,
+			height: this.fence.height
 		});
 
 		this.houseContainer.find('.fence-covered').load(function() {
@@ -511,7 +582,7 @@ var App = Class({
 		}
 	},
 	initChooseFence: function() {
-		this.activateFenceEdit(true)
+		this.activateFenceEdit(true);
 		this.imgBase.attr('src', this.houseUrl);
 
 		// Remove available fences
@@ -574,6 +645,12 @@ var App = Class({
 
 				break;
 		}
+	},
+	vibrate: function() {
+		window.navigator.vibrate([200]);
+	},
+	vibrateLong: function() {
+		window.navigator.vibrate([200, 100, 200]);
 	},
 	returnToHome: function() {
 		window.location.href = 'index.html';
