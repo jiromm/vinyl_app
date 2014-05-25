@@ -426,7 +426,7 @@ var App = Class({
 			} else {
 				throw new DOMException('Archive was empty in basic layer.');
 			}
-		})
+		});
 
 		// Choose Fence
 		body.delegate('.fences .swiper-slide', 'click', function(e) {
@@ -476,7 +476,7 @@ var App = Class({
 
 			window.app.fence.lastWidth = currentWidth;
 			window.app.fence.lastHeight = currentHeight;
-		})
+		});
 
 		// Resize fence
 		this.fenceZoomer.on('tap', function(e) {
@@ -555,8 +555,8 @@ var App = Class({
 		};
 
 		this.houseContainer.find('.fence-covered').attr('src', selectedFence.original).animate({
-			width: this.fence.width,
-			height: this.fence.height
+			width: totalWidth,
+			height: totalHeight
 		});
 
 		this.houseContainer.find('.fence-covered').load(function() {
@@ -564,6 +564,11 @@ var App = Class({
 				opacity: 1
 			});
 		});
+
+		$('.fence-draggable').animate({
+			left: parseInt((window.app.imgBase.width() - window.app.fence.width) / 2) + 'px',
+			top: parseInt(window.app.imgBase.height() - (window.app.fence.height + (window.app.imgBase.height() / 10))) + 'px'
+		}, 'fast');
 	},
 	initChooseHouse: function() {
 		// do nothing now
@@ -583,7 +588,9 @@ var App = Class({
 	},
 	initChooseFence: function() {
 		this.activateFenceEdit(true);
-		this.imgBase.attr('src', this.houseUrl);
+		this.imgBase.load(function() {
+			window.app.houseContainer.css('height', window.app.imgBase.height());
+		}).attr('src', this.houseUrl);
 
 		// Remove available fences
 		window.app.fenceCategoriesSwiper.removeAllSlides();
@@ -646,11 +653,25 @@ var App = Class({
 				break;
 		}
 	},
+	vibrationApi: function() {
+		window.navigator.vibrate = window.navigator.vibrate ||
+			window.navigator.webkitVibrate ||
+			window.navigator.mozVibrate ||
+			window.navigator.msVibrate;
+	},
 	vibrate: function() {
-		window.navigator.vibrate([200]);
+		this.vibrationApi();
+
+		if (window.navigator.vibrate) {
+			window.navigator.vibrate([200]);
+		}
 	},
 	vibrateLong: function() {
-		window.navigator.vibrate([200, 100, 200]);
+		this.vibrationApi();
+
+		if (window.navigator.vibrate) {
+			window.navigator.vibrate([200, 100, 200]);
+		}
 	},
 	returnToHome: function() {
 		window.location.href = 'index.html';
