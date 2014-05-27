@@ -44,7 +44,17 @@ a, button {
 	padding: 0;
 }
 .thumbnail.active {
-	background-color: #428BCA;
+	background-color: #DAE9F5;
+	border-radius: 50%;
+}
+.thumbnail.active img {
+	border-radius: 50%;
+}
+.thumbnail img {
+	-webkit-transition: all 0.25s;
+	-moz-transition: all 0.25s;
+	-o-transition: all 0.25s;
+	transition: all 0.25s;
 }
 .pager button {
 	border-radius: 15px;

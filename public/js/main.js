@@ -253,6 +253,8 @@ var App = Class({
 		this.fenceTools = $('.fence-tools');
 		this.fenceEdit = $('.fence-edit');
 		this.fenceZoomer = $(".fence-zoomer");
+
+		this.imgUploadContainer = $("#upload-photo");
 	},
 
 	initialize: function() {
@@ -462,45 +464,55 @@ var App = Class({
 				currentWidth = window.app.fence.width * resizeCoeff,
 				currentHeight = window.app.fence.height * resizeCoeff;
 
-//			if (Math.abs(window.app.fence.lastWidth - currentWidth) > 20) {
-//				window.app.houseContainer.find('.fence-covered').animate({
-//					width: currentWidth,
-//					height: currentHeight
-//				}, 'fast');
-//			} else {
-				window.app.houseContainer.find('.fence-covered').css({
-					width: currentWidth,
-					height: currentHeight
-				});
-//			}
+			window.app.houseContainer.find('.fence-covered').css({
+				width: currentWidth,
+				height: currentHeight
+			});
 
 			window.app.fence.lastWidth = currentWidth;
 			window.app.fence.lastHeight = currentHeight;
 		});
 
-		// Resize fence
-		this.fenceZoomer.on('tap', function(e) {
+		// Image Upload
+		this.imgUploadContainer.find('.house-img-form').on('change', function(e) {
 			e.preventDefault();
 
-			var resizeCoeff = $(this).val(),
-				currentWidth = window.app.fence.width * resizeCoeff,
-				currentHeight = window.app.fence.height * resizeCoeff;
+			var formElement = window.app.imgUploadContainer.find('form').eq(0);
 
-//			if (Math.abs(window.app.fence.lastWidth - currentWidth) > 20) {
-				window.app.houseContainer.find('.fence-covered').animate({
-					width: currentWidth,
-					height: currentHeight
-				}, 'fast');
-//			} else {
-//				window.app.houseContainer.find('.fence-covered').css({
-//					width: currentWidth,
-//					height: currentHeight
-//				});
-//			}
+			$(formElement).ajaxSubmit({
+				resetForm: true,
+				beforeSubmit: function(formData, jqForm, options) {
+					console.log('before');
+					console.log(formData);
+					console.log(jqForm);
+					console.log(options);
+				},
+				success: function(data, statusText) {
+					console.log('success');
+					console.log(data);
+					console.log(data.message);
+					console.log(statusText);
 
-			window.app.fence.lastWidth = currentWidth;
-			window.app.fence.lastHeight = currentHeight;
-		})
+					if (data.status == 'success' && data.code == '0') {
+						window.app.houseUrl = data.url;
+						window.app.activateNext(true);
+					} else {
+						$('.upload-error-message').text(data.message);
+					}
+				},
+				error: function() {
+					console.log("An AJAX error occured.");
+					$('.upload-error-message').text('An AJAX error occured');
+				}
+			});
+		});
+
+		// Trigger Image Upload
+		this.imgUploadContainer.find('.img-upload-button').on('click', function(e) {
+			e.preventDefault();
+
+			window.app.imgUploadContainer.find('.house-img-form').trigger('click');
+		});
 	},
 	selectHouse: function(thumb) {
 		this.houseUrl = thumb.attr('data-src');
