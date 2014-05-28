@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/idangerous.swiper.css">
 	<link rel="stylesheet" href="css/jquery.nouislider.css">
+	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" href="css/main.css">
 
 	<!--[if lt IE 9]>
@@ -105,14 +106,23 @@
 				<div class="tab-pane" id="upload-photo">
 					<div class="well-sm text-center">
 						<p class="text-muted">Be sure to upload your house captured from the front only...</p>
-						<a class="btn btn-lg btn-primary img-upload-button">
-							<i class="glyphicon glyphicon-cloud-upload"></i>
-							Upload Image
-						</a>
+						<button class="btn btn-lg btn-primary img-upload-button">
+							<span class="upload-text">
+								<i class="glyphicon glyphicon-cloud-upload"></i>
+								Upload Image
+							</span>
+							<span class="loading">
+								<span class="loading-dot"></span>
+								<span class="loading-dot"></span>
+								<span class="loading-dot"></span>
+								<span class="loading-dot"></span>
+							</span>
+						</button>
 						<form class="hidden" action="api/index.php" method="post" enctype="multipart/form-data">
 							<input type="file" name="house-img-form" class="house-img-form">
 						</form>
-						<div class="upload-error-message text-danger"></div>
+						<div class="well-sm upload-error-message text-danger"></div>
+						<div class="upload-success-message text-success"></div>
 					</div>
 				</div>
 			</div>

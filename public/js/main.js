@@ -273,6 +273,8 @@ var App = Class({
 
 		this.draggable.udraggable();
 
+		this.imgUploadContainer.find('.loading').hide();
+
 		// Debug only
 //		this.setStep(2);
 //		this.activateTools(true);
@@ -479,30 +481,35 @@ var App = Class({
 
 			var formElement = window.app.imgUploadContainer.find('form').eq(0);
 
+			window.app.imgUploadContainer.find('.upload-error-message').text('');
+			window.app.imgUploadContainer.find('.upload-success-message').text('');
+
 			$(formElement).ajaxSubmit({
 				resetForm: true,
 				beforeSubmit: function(formData, jqForm, options) {
-					console.log('before');
-					console.log(formData);
-					console.log(jqForm);
-					console.log(options);
+					window.app.imgUploadContainer.find('.upload-text').hide();
+					window.app.imgUploadContainer.find('.loading').show('fast');
+					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', true);
 				},
 				success: function(data, statusText) {
-					console.log('success');
-					console.log(data);
-					console.log(data.message);
-					console.log(statusText);
+					window.app.imgUploadContainer.find('.loading').hide();
+					window.app.imgUploadContainer.find('.upload-text').show('fast');
+					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', false);
 
 					if (data.status == 'success' && data.code == '0') {
 						window.app.houseUrl = data.url;
 						window.app.activateNext(true);
+						window.app.imgUploadContainer.find('.upload-success-message').html('<p>Yuhuu! We got your photo.<br>Click <span class="label label-success">Next</span> to go forward.</p>');
 					} else {
-						$('.upload-error-message').text(data.message);
+						window.app.imgUploadContainer.find('.upload-error-message').text(data.message);
 					}
 				},
 				error: function() {
-					console.log("An AJAX error occured.");
-					$('.upload-error-message').text('An AJAX error occured');
+					window.app.imgUploadContainer.find('.loading').hide();
+					window.app.imgUploadContainer.find('.upload-text').show('fast');
+					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', false);
+
+					window.app.imgUploadContainer.find('.upload-error-message').text('An AJAX error occured');
 				}
 			});
 		});

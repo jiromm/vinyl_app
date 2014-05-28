@@ -1,6 +1,11 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(-1);
+
 include("WideImage/WideImage.php");
+include("../../Config.php");
 
 header('Content-Type: application/json');
 
@@ -32,7 +37,7 @@ try {
 		$imgHeight = 200;
 		$imgWidth = 500;
 		$destinationDirectory = '../archive/uploaded/';
-		$imgUrl = 'http://vinyl_app/archive/uploaded/';
+		$imgUrl = HOST . BASE_DIR . 'archive/uploaded/';
 		$quality = 96;
 
 		if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
@@ -56,7 +61,6 @@ try {
 
 		list($curWidth, $curHeight) = getimagesize($tempSrc);
 
-//		$imageExt = pathinfo($_FILES[IMG]['tmp_name'], PATHINFO_EXTENSION);
 		$imageExt = 'jpg';
 		$imageName = pathinfo($_FILES[IMG]['tmp_name'], PATHINFO_FILENAME);
 		$newImageName = $imageName . '-' . $randomNumber . '.' . $imageExt;
