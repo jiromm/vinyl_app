@@ -10,6 +10,11 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+	<style type="text/css">
+		.soft-hide {
+			display: none;
+		}
+	</style>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/idangerous.swiper.css">
 	<link rel="stylesheet" href="css/jquery.nouislider.css">
@@ -44,63 +49,22 @@
 		</div>
 	</div>
 
-	<div class="row page page1">
+	<div class="row page page1 soft-hide">
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#choose-houses" data-toggle="tab">Choose from Templates</a></li>
-				<li><a href="#upload-photo" data-toggle="tab">Upload</a></li>
+				<li>
+					<a href="#upload-photo" data-toggle="tab">
+						<i class="glyphicon glyphicon-camera"></i>
+						Capture
+					</a>
+				</li>
 			</ul>
 
 			<div class="tab-content">
 				<div class="tab-pane active" id="choose-houses">
 					<div class="row">
-						<div class="well-sm">
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/1">
-									<img src="http://lorempixel.com/100/100/sports/1" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/2">
-									<img src="http://lorempixel.com/100/100/sports/2" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/3">
-									<img src="http://lorempixel.com/100/100/sports/3" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/4">
-									<img src="http://lorempixel.com/100/100/sports/4" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/5">
-									<img src="http://lorempixel.com/100/100/sports/5" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/6">
-									<img src="http://lorempixel.com/100/100/sports/6" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/7">
-									<img src="http://lorempixel.com/100/100/sports/7" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/8">
-									<img src="http://lorempixel.com/100/100/sports/8" width="100%">
-								</a>
-							</div>
-							<div class="col-xs-4 col-md-3">
-								<a href="#" class="thumbnail" data-src="http://lorempixel.com/500/300/sports/9">
-									<img src="http://lorempixel.com/100/100/sports/9" width="100%">
-								</a>
-							</div>
-						</div>
+						<div class="well-sm"></div>
 					</div>
 				</div>
 				<div class="tab-pane" id="upload-photo">
@@ -109,7 +73,7 @@
 						<button class="btn btn-lg btn-primary img-upload-button">
 							<span class="upload-text">
 								<i class="glyphicon glyphicon-cloud-upload"></i>
-								Upload Image
+								Capture Photo
 							</span>
 							<span class="loading">
 								<span class="loading-dot"></span>
@@ -118,7 +82,7 @@
 								<span class="loading-dot"></span>
 							</span>
 						</button>
-						<form class="hidden" action="api/index.php" method="post" enctype="multipart/form-data">
+						<form class="hidden" action="api/upload.php" method="post" enctype="multipart/form-data">
 							<input type="file" name="house-img-form" class="house-img-form">
 						</form>
 						<div class="well-sm upload-error-message text-danger"></div>
@@ -129,7 +93,7 @@
 		</div>
 	</div>
 
-	<div class="row page page2">
+	<div class="row page page2 soft-hide">
 		<div class="col-sm-12">
 			<div class="house-container clearfix">
 				<div class="fence-draggable">
@@ -160,22 +124,22 @@
 		</div>
 	</div>
 
-	<div class="row page page3">
+	<div class="row page page3 soft-hide">
 		<div class="col-sm-12">
-			with sauerkraut drink sour milk
+
 		</div>
 	</div>
 
-	<div class="row page page4">
+	<div class="row page page4 soft-hide">
 		<div class="col-sm-12">
-			ho-ho-ho! fight of life
+
 		</div>
 	</div>
 
 	<div class="stick stick-foot">
 		<ul class="null pager">
 			<li class="previous"><button class="btn btn-default pull-left">&larr; Back</button></li>
-			<li><a href="#" class="text-center fence-edit">Edit</a></li>
+			<li><a href="#" class="text-center fence-edit soft-hide">Edit</a></li>
 			<li class="next"><button class="btn btn-default pull-right">Next &rarr;</button></li>
 		</ul>
 	</div>

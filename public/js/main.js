@@ -1,234 +1,7 @@
 var App = Class({
 	step: null,
-//	vars: {
-//		locker: null,
-//
-//		nav: null,
-//
-//		nav_step1: null,
-//		nav_step2: null,
-//		nav_step3: null,
-//
-//		prev: null,
-//		next: null,
-//
-//		pages: null,
-//		thumbnails: null,
-//		categories: null,
-//		fences: null,
-//		fencesChoice: null,
-//		fencesTools: null,
-//
-//		houseUrl: false,
-//		vinylUrl: false,
-//
-//		imgBase: false,
-//
-//		fenceCategoriesSwiper: false,
-//		fencesSwiper: false
-//	},
-	fenceArchive: {
-		1: {
-			name: 'Category 1',
-			fences: {
-				1: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/animals/1',
-					original: 'http://lorempixel.com/300/120/animals/1',
-					width: 300,
-					height: 120
-				},
-				2: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/animals/2',
-					original: 'http://lorempixel.com/300/120/animals/2',
-					width: 400,
-					height: 150
-				},
-				3: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/animals/3',
-					original: 'http://lorempixel.com/300/120/animals/3',
-					width: 330,
-					height: 150
-				},
-				4: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/animals/4',
-					original: 'http://lorempixel.com/300/120/animals/4',
-					width: 230,
-					height: 100
-				},
-				5: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/animals/5',
-					original: 'http://lorempixel.com/300/120/animals/5',
-					width: 310,
-					height: 200
-				}
-			}
-		},
-		2: {
-			name: 'Category 2',
-			fences: {
-				1: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nature/1',
-					original: 'http://lorempixel.com/260/140/nature/1',
-					width: 310,
-					height: 200
-				},
-				2: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nature/2',
-					original: 'http://lorempixel.com/260/140/nature/2',
-					width: 310,
-					height: 200
-				},
-				3: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nature/3',
-					original: 'http://lorempixel.com/260/140/nature/3',
-					width: 310,
-					height: 200
-				},
-				4: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nature/4',
-					original: 'http://lorempixel.com/260/140/nature/4',
-					width: 310,
-					height: 200
-				},
-				5: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nature/5',
-					original: 'http://lorempixel.com/260/140/nature/5',
-					width: 310,
-					height: 200
-				}
-			}
-		},
-		3: {
-			name: 'Category 3',
-			fences: {
-				1: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nightlife/1',
-					original: 'http://lorempixel.com/100/40/nightlife/1',
-					width: 310,
-					height: 200
-				},
-				2: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nightlife/2',
-					original: 'http://lorempixel.com/100/40/nightlife/2',
-					width: 310,
-					height: 200
-				},
-				3: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nightlife/3',
-					original: 'http://lorempixel.com/100/40/nightlife/3',
-					width: 310,
-					height: 200
-				},
-				4: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nightlife/4',
-					original: 'http://lorempixel.com/100/40/nightlife/4',
-					width: 310,
-					height: 200
-				},
-				5: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/nightlife/5',
-					original: 'http://lorempixel.com/100/40/nightlife/5',
-					width: 310,
-					height: 200
-				}
-			}
-		},
-		4: {
-			name: 'Category 4',
-			fences: {
-				1: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/food/1',
-					original: 'http://lorempixel.com/110/30/food/1',
-					width: 310,
-					height: 200
-				},
-				2: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/food/2',
-					original: 'http://lorempixel.com/110/30/food/2',
-					width: 310,
-					height: 200
-				},
-				3: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/food/3',
-					original: 'http://lorempixel.com/110/30/food/3',
-					width: 310,
-					height: 200
-				},
-				4: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/food/4',
-					original: 'http://lorempixel.com/110/30/food/4',
-					width: 310,
-					height: 200
-				},
-				5: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/food/5',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				}
-			}
-		},
-		5: {
-			name: 'Category 5',
-			fences: {
-				1: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/city/1',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				},
-				2: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/city/2',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				},
-				3: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/city/3',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				},
-				4: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/city/4',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				},
-				5: {
-					name: 'Some name',
-					icon: 'http://lorempixel.com/60/40/city/5',
-					original: 'http://lorempixel.com/110/30/food/5',
-					width: 310,
-					height: 200
-				}
-			}
-		}
-	},
+	fenceArchive: {},
+	houseArchive: {},
 
 	defineVariables: function() {
 		this.locker = $('.locker');
@@ -255,29 +28,39 @@ var App = Class({
 		this.fenceZoomer = $(".fence-zoomer");
 
 		this.imgUploadContainer = $("#upload-photo");
+		this.houses = $("#choose-houses");
 	},
 
 	initialize: function() {
-		this.defineVariables();
+		this.loadResources(function() {
+			window.app.defineVariables();
 
-		this.initOrientationDetector();
+			window.app.initOrientationDetector();
 
-		this.setStep(1);
+			window.app.setStep(1);
 
-		this.bindEvents();
-		this.activateNext(false);
+			window.app.bindEvents();
+			window.app.activateNext(false);
 
-		this.initPlugins();
+			window.app.initPlugins();
 
-		this.preloadFences();
+			window.app.preloadFences();
 
-		this.draggable.udraggable();
+			window.app.draggable.udraggable();
 
-		this.imgUploadContainer.find('.loading').hide();
+			window.app.imgUploadContainer.find('.loading').hide();
+		});
+	},
+	loadResources: function(callback) {
+		$.getJSON("api/getHouses.php", function(houses) {
+			window.app.houseArchive = houses;
 
-		// Debug only
-//		this.setStep(2);
-//		this.activateTools(true);
+			$.getJSON("api/getFences.php", function(fences) {
+				window.app.fenceArchive = fences;
+
+				callback();
+			});
+		});
 	},
 	preloadFences: function() {
 		var urlList = [];
@@ -385,7 +168,7 @@ var App = Class({
 		});
 
 		// Choose House
-		this.thumbnails.on('click', function(e) {
+		body.delegate('#choose-houses .thumbnail', 'click', function(e) {
 			e.preventDefault();
 
 			window.app.vibrateLong();
@@ -487,27 +270,21 @@ var App = Class({
 			$(formElement).ajaxSubmit({
 				resetForm: true,
 				beforeSubmit: function(formData, jqForm, options) {
-					window.app.imgUploadContainer.find('.upload-text').hide();
-					window.app.imgUploadContainer.find('.loading').show('fast');
-					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', true);
+					window.app.uploadButtonFreeze();
 				},
 				success: function(data, statusText) {
-					window.app.imgUploadContainer.find('.loading').hide();
-					window.app.imgUploadContainer.find('.upload-text').show('fast');
-					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', false);
+					window.app.uploadButtonUnfreeze();
 
 					if (data.status == 'success' && data.code == '0') {
 						window.app.houseUrl = data.url;
 						window.app.activateNext(true);
-						window.app.imgUploadContainer.find('.upload-success-message').html('<p>Yuhuu! We got your photo.<br>Click <span class="label label-success">Next</span> to go forward.</p>');
+						window.app.imgUploadContainer.find('.upload-success-message').html('<p>Yuhuu! We got your photo.<br>Tap on <span class="label label-success">Next</span> to go forward.</p>');
 					} else {
 						window.app.imgUploadContainer.find('.upload-error-message').text(data.message);
 					}
 				},
 				error: function() {
-					window.app.imgUploadContainer.find('.loading').hide();
-					window.app.imgUploadContainer.find('.upload-text').show('fast');
-					window.app.imgUploadContainer.find('.img-upload-button').prop('disabled', false);
+					window.app.uploadButtonUnfreeze();
 
 					window.app.imgUploadContainer.find('.upload-error-message').text('An AJAX error occured');
 				}
@@ -520,6 +297,16 @@ var App = Class({
 
 			window.app.imgUploadContainer.find('.house-img-form').trigger('click');
 		});
+	},
+	uploadButtonFreeze: function() {
+		this.imgUploadContainer.find('.upload-text').hide();
+		this.imgUploadContainer.find('.loading').show('fast');
+		this.imgUploadContainer.find('.img-upload-button').prop('disabled', true);
+	},
+	uploadButtonUnfreeze: function() {
+		this.imgUploadContainer.find('.loading').hide();
+		this.imgUploadContainer.find('.upload-text').show('fast');
+		this.imgUploadContainer.find('.img-upload-button').prop('disabled', false);
 	},
 	selectHouse: function(thumb) {
 		this.houseUrl = thumb.attr('data-src');
@@ -590,7 +377,29 @@ var App = Class({
 		}, 'fast');
 	},
 	initChooseHouse: function() {
-		// do nothing now
+		var coeff = .1;
+
+		this.initiated = this.initiated || false;
+
+		if (!this.initiated) {
+			$.each(this.houseArchive, function(index, value) {
+				var item = $('\
+					<div class="col-xs-4 col-md-3 soft-hide">\
+						<a href="#" class="thumbnail" data-src="' + value['original'] + '">\
+							<img src="' + value['icon'] + '" width="100%">\
+						</a>\
+					</div>\
+				');
+
+				window.app.houses.find('.well-sm').append(item).ready(function() {
+					setTimeout(function() {
+						item.fadeIn('fast');
+					}, (coeff += .2) * 500);
+				});
+			});
+
+			this.initiated = true;
+		}
 	},
 	activateTools: function(is) {
 		if (is) {
