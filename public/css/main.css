@@ -88,11 +88,13 @@ a, button {
 .fence-tools {
 	position: fixed;
 	bottom: 47px;
-	left: 0;
 	z-index: 8;
 	border-top: 1px solid #ddd;
 	width: 100%;
 	background-color: #fff;
+}
+.fence-categories {
+	left: 0;
 }
 .fence-categories .swiper-slide {
 	padding: 5px 2px;
@@ -147,8 +149,8 @@ a, button {
 .fences {
 	position: fixed;
 	bottom: 80px;
-	left: 0;
 	z-index: 9;
+	left: 0;
 	border-top: 1px solid #ddd;
 	width: 100%;
 	background-color: #fff;
@@ -170,4 +172,39 @@ a, button {
 }
 .fences .swiper-slide.active {
 	background-color: #eee;
+}
+.or {
+	position: relative;
+	margin: 5px 0;
+}
+.or span {
+	padding: 0 5px;
+	background-color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.or:after {
+	content: "";
+	height: 1px;
+	width: 100%;
+	display: block;
+	position: absolute;
+	margin-top: -10px;
+	background-color: #ccc;
+	z-index: -1;
+}
+.social {
+	position: fixed;
+	bottom: 0;
+	padding: 10px 15px;
+	background: #fff;
+	width: 100%;
+}
+
+.stick,
+.page,
+.fence-tools,
+.social {
+	max-width: 700px;
+	margin: 0 auto;
 }

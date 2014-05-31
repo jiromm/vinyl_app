@@ -16,7 +16,6 @@ var App = Class({
 		this.next = $('.next button');
 
 		this.pages = $('.page');
-		this.thumbnails = $('#choose-houses').find('.thumbnail');
 		this.fences = $('.fences').find('.swiper-slide');
 
 		this.houseContainer = $('.house-container');
@@ -26,6 +25,7 @@ var App = Class({
 		this.fenceTools = $('.fence-tools');
 		this.fenceEdit = $('.fence-edit');
 		this.fenceZoomer = $(".fence-zoomer");
+		this.pager = $('.pager');
 
 		this.imgUploadContainer = $("#upload-photo");
 		this.houses = $("#choose-houses");
@@ -34,20 +34,13 @@ var App = Class({
 	initialize: function() {
 		this.loadResources(function() {
 			window.app.defineVariables();
-
 			window.app.initOrientationDetector();
-
 			window.app.setStep(1);
-
 			window.app.bindEvents();
 			window.app.activateNext(false);
-
 			window.app.initPlugins();
-
 			window.app.preloadFences();
-
 			window.app.draggable.udraggable();
-
 			window.app.imgUploadContainer.find('.loading').hide();
 		});
 	},
@@ -226,6 +219,8 @@ var App = Class({
 				$(this).find('img').attr('data-category-id'),
 				$(this).find('img').attr('data-fence-id')
 			);
+
+			window.app.activateNext(true);
 		});
 
 		// Edit (resize) Fence
@@ -310,10 +305,13 @@ var App = Class({
 	},
 	selectHouse: function(thumb) {
 		this.houseUrl = thumb.attr('data-src');
-		this.thumbnails.removeClass('active');
+		this.getThumbnails().removeClass('active').addClass('xxx');
 		thumb.addClass('active');
 
 		this.activateNext(true);
+	},
+	getThumbnails: function() {
+		return $('#choose-houses').find('.thumbnail');
 	},
 	deselectHouse: function(thumb) {
 		this.houseUrl = false;
@@ -321,9 +319,30 @@ var App = Class({
 
 		this.activateNext(false);
 	},
+	hideFooter: function() {
+		$('.stick-foot').hide();
+	},
+	showFooter: function() {
+		$('.stick-foot').show();
+	},
 	setStep: function(number) {
 		// Unlock Next for next action after prev action
 		this.activateNext(this.step > number);
+
+		switch (this.step) {
+			case 1:
+
+
+				break;
+			case 2:
+				this.saveCoverImgDetails();
+
+				break;
+			case 3:
+
+
+				break;
+		}
 
 		this.step = number;
 
@@ -332,6 +351,8 @@ var App = Class({
 		this.highlightStep(this.step);
 		this.activateTools(false);
 		this.activateFenceEdit(false);
+		this.pager.find('.pull-right').html('Next &rarr;');
+		this.showFooter();
 
 		switch (this.step) {
 			case 1:
@@ -340,9 +361,33 @@ var App = Class({
 				break;
 			case 2:
 				this.initChooseFence();
+				this.pager.find('.pull-right').html('Finish');
+
+				break;
+			case 3:
+				this.initExport();
+				this.hideFooter();
 
 				break;
 		}
+	},
+	initExport: function() {
+		$('.export-bg').attr('src', $('.img-base').attr('src'));
+		$('.export-over').attr('src', $('.fence-covered').attr('src')).css(this.getCoverImgDetails());
+	},
+	saveCoverImgDetails: function() {
+		var imgBase = $('.img-base'),
+			imgOver = $('.fence-covered');
+
+		this.offset = {
+			left: imgOver.offset().left - imgBase.offset().left,
+			top: imgOver.offset().top - imgBase.offset().top,
+			width: imgOver.width(),
+			height: imgOver.height()
+		}
+	},
+	getCoverImgDetails: function() {
+		return this.offset;
 	},
 	initDrawFence: function(categoryId, fenceId) {
 		this.fenceZoomer.val(1);
