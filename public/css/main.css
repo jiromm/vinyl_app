@@ -201,6 +201,9 @@ a, button {
 	background: #fff;
 	width: 100%;
 }
+.export-bg {
+	width: 100%;
+}
 
 .stick,
 .page,

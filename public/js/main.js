@@ -372,18 +372,35 @@ var App = Class({
 		}
 	},
 	initExport: function() {
-		$('.export-bg').attr('src', $('.img-base').attr('src'));
-		$('.export-over').attr('src', $('.fence-covered').attr('src')).css(this.getCoverImgDetails());
+		var imgBase = $('.img-base'),
+			imgOver = $('.fence-covered');
+
+		$.ajax({
+			type: 'POST',
+			url: "api/getFullImage.php",
+			dataType: "json",
+			data: {
+				images: {
+					base: imgBase.attr('src'),
+					over: imgOver.attr('src')
+				},
+				position: this.getCoverImgDetails()
+			}
+		}).done(function(data) {
+			$('.export-bg').attr('src', data.url);
+		});
 	},
 	saveCoverImgDetails: function() {
 		var imgBase = $('.img-base'),
 			imgOver = $('.fence-covered');
 
 		this.offset = {
-			left: imgOver.offset().left - imgBase.offset().left,
-			top: imgOver.offset().top - imgBase.offset().top,
-			width: imgOver.width(),
-			height: imgOver.height()
+			left: (imgOver.offset().left - imgBase.offset().left) * 500 / imgBase.width(),
+			top: (imgOver.offset().top - imgBase.offset().top) * 300 / imgBase.height(),
+			overWidth: 500 * imgOver.width() / imgBase.width(),
+			overHeight: 300 * imgOver.height() / imgBase.height(),
+			baseWidth: 500,
+			baseHeight: 300
 		}
 	},
 	getCoverImgDetails: function() {
