@@ -116,6 +116,7 @@ a, button {
 }
 .fence-tools {
 	padding: 10px;
+	left: 0;
 }
 .fence-zoomer-container {
 	max-width: 500px;
