@@ -91,8 +91,8 @@ var App = Class({
 			start: 1,
 			behaviour: 'slide',
 			range: {
-				'min': .6,
-				'max': 1.6
+				'min': .4,
+				'max': 1.4
 			}
 		});
 	},
