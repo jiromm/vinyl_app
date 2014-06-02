@@ -36,7 +36,7 @@
 	<div class="message">Locked</div>
 </section>
 
-<div class="container-fluid relative">
+<div class="container relative">
 	<div class="stick stick-head" role="navigation">
 		<div class="btn-group btn-group-justified">
 			<div class="btn-group">
@@ -134,7 +134,7 @@
 		</div>
 
 		<div class="social">
-			<a href="#" class="btn btn-success btn-sm btn-block"><i class="glyphicon glyphicon-envelope"></i> Submit an Appointment</a>
+			<a href="#" class="btn btn-success btn-sm btn-block submit-appointment"><i class="glyphicon glyphicon-envelope"></i> Submit an Appointment</a>
 			<div class="or text-center text-muted"><span>or</span></div>
 			<div class="row">
 				<div class="col-xs-6">
@@ -150,7 +150,36 @@
 
 	<div class="row page page4 soft-hide">
 		<div class="col-sm-12">
+			<form action="api/submitAppointment.php" method="post" role="form">
+				<p class="text-primary">Dzer yntrac nkary kkcvi ays formayin u submit klini mez. Karch jamanakva yntacqum dzez het kkapnven mer ashxatakicnery...</p>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" placeholder="John Smith" required>
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone Number</label>
+					<input type="tel" class="form-control" id="phone" placeholder="+374 93 591459" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" placeholder="john@smith.com" required>
+				</div>
+				<div class="form-group">
+					<label for="remarks">Remarks <span class="text-muted">(optional)</span></label>
+					<textarea class="form-control" id="remarks" placeholder="How we can help?"></textarea>
+				</div>
+				<button type="submit" class="btn btn-block btn-primary appointment-form-submit">Submit</button>
+			</form>
 
+			<div class="alert alert-success soft-hide">
+				<h4><strong>Well done!</strong> Appointment Successfully Submited!</h4>
+				<p>Karch jamanakva yntacqum dzez het kkapnven mer masnagetnery...</p>
+			</div>
+
+			<div class="alert alert-danger soft-hide">
+				<h4><strong>Oh snap!</strong> You Got an Error!</h4>
+				<p>Please try again later...</p>
+			</div>
 		</div>
 	</div>
 

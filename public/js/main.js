@@ -14,6 +14,8 @@ var App = Class({
 
 		this.prev = $('.previous button');
 		this.next = $('.next button');
+		this.submitAppointment = $('.submit-appointment');
+		this.submitAppointmentFormButton = $('.appointment-form-submit');
 
 		this.pages = $('.page');
 		this.fences = $('.fences').find('.swiper-slide');
@@ -145,6 +147,12 @@ var App = Class({
 
 					break;
 			}
+		});
+
+		this.submitAppointment.on('click', function(e) {
+			e.preventDefault();
+
+			window.app.next.trigger('click');
 		});
 
 		// Move by Navigation
@@ -292,6 +300,41 @@ var App = Class({
 
 			window.app.imgUploadContainer.find('.house-img-form').trigger('click');
 		});
+
+		// Submit Appointment
+		this.submitAppointmentFormButton.on('click', function(e) {
+			e.preventDefault();
+
+			var form = $(this).closest('form'),
+				parent = form.parent(),
+				url = form.attr('action'),
+				image = $('.export-bg').attr('src');
+
+			$.ajax({
+				type: 'POST',
+				url: url,
+				dataType: "json",
+				data: {
+					image: image,
+					name: $('#name').val(),
+					phone: $('#phone').val(),
+					email: $('#email').val(),
+					remarks: $('#remarks').val()
+				}
+			}).done(function(data) {
+				form.fadeOut('fast', function() {
+					if (data.status == 'success') {
+						parent.find('.alert-success').fadeIn('fast');
+					} else {
+						parent.find('.alert-success').fadeIn('fast');
+					}
+				});
+			}).fail(function() {
+				form.fadeOut('fast', function() {
+					parent.find('.alert-success').fadeIn('fast');
+				});
+			});
+		});
 	},
 	uploadButtonFreeze: function() {
 		this.imgUploadContainer.find('.upload-text').hide();
@@ -318,6 +361,9 @@ var App = Class({
 		thumb.removeClass('active');
 
 		this.activateNext(false);
+	},
+	hideHeader: function() {
+		$('.stick-head').hide();
 	},
 	hideFooter: function() {
 		$('.stick-foot').hide();
@@ -367,6 +413,11 @@ var App = Class({
 			case 3:
 				this.initExport();
 				this.hideFooter();
+
+				break;
+			case 4:
+				this.hideFooter();
+				this.hideHeader();
 
 				break;
 		}
