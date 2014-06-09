@@ -1,0 +1,44 @@
+<div class="row">
+	<hr>
+	<h1 class="col-sm-12">
+		Attendances
+
+		<?php if ($this->hasRole(\Vinyl\Constant\Permission::THERAPY_ADD)) { ?>
+		<a href="<?php echo $this->url('therapy-add'); ?>" class="btn btn-success pull-right">Add New Therapy</a>
+		<?php } ?>
+	</h1>
+	<hr>
+</div>
+<div class="row">
+	<table id="attendance-table">
+		<thead>
+		<tr>
+			<th width="20%">Therapy</th>
+			<th width="15%">Date From</th>
+			<th width="15%">Date To</th>
+			<th width="40%">Description</th>
+			<th width="10%">Functions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php
+		if ($this->data) {
+			/** @var \Vinyl\Entity\Attendance $row */
+			foreach ($this->data as $row) {
+				?>
+				<tr>
+					<td><?php echo \Vinyl\Constant\DBData::getTherapy($row->getTherapyId()); ?></td>
+					<td><?php echo $row->getDateFrom(); ?></td>
+					<td><?php echo $row->getDateTo(); ?></td>
+					<td><?php echo htmlspecialchars($row->getDescription()); ?></td>
+					<td>
+						<a href="<?php echo $this->url('therapy-view', ['id' => $row->getId()]); ?>" class="label label-success">View</a>
+					</td>
+				</tr>
+			<?php
+			}
+		}
+		?>
+		</tbody>
+	</table>
+</div>
