@@ -1,0 +1,155 @@
+<?php
+
+$data = $this->data;
+
+if ($data !== false) {
+	$attendance = $data['attendance'];
+	$participants = $data['participants'];
+
+?>
+<div class="row">
+	<hr>
+	<h1 class="col-sm-12">
+		<?php echo $attendance['therapy']; ?>
+		<div class="btn-group pull-right">
+			<a href="<?php echo $this->url('therapy'); ?>" class="btn btn-group btn-default">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				Back
+			</a>
+
+			<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_EDIT)) { ?>
+			<a href="<?php echo $this->urlEditTherapy; ?>" class="btn btn-group btn-success">
+				<span class="glyphicon glyphicon-edit"></span>
+				Edit
+			</a>
+			<?php } ?>
+
+			<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_DELETE)) { ?>
+			<a href="<?php echo $this->urlDeleteTherapy; ?>" class="btn btn-group btn-danger">
+				<span class="glyphicon glyphicon-remove"></span>
+				Delete
+			</a>
+			<?php } ?>
+		</div>
+	</h1>
+	<hr>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+	<table class="table table-bordered table-hover">
+		<tbody>
+			<tr>
+				<td>Therapy</td>
+				<td><?php echo $attendance['therapy']; ?></td>
+			</tr>
+			<tr>
+				<td>From</td>
+				<td><?php echo $attendance['date_from']; ?></td>
+			</tr>
+			<tr>
+				<td>To</td>
+				<td><?php echo $attendance['date_to']; ?></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><?php echo htmlspecialchars($attendance['description']); ?></td>
+			</tr>
+			<tr>
+				<td width="30%">Participants</td>
+				<td width="70%">
+					<form class="form-inline well-sm row" role="form" action="#replace_me" data-href="<?php echo $this->urlAddParticipant; ?>" id="add-participant-form">
+						<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_ADD)) { ?>
+						<div class="well-sm add-new-participant-button">
+							<a href="#add" class="btn btn-xs btn-success pull-right"><i class="glyphicon glyphicon-plus-sign"></i> add new participant</a>
+						</div>
+						<?php } ?>
+
+						<div class="hide participants-select-list">
+							<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_ADD)) { ?>
+							<div class="form-group col-sm-8">
+								<select class="form-control selectize-simple participants">
+									<?php
+										foreach ($this->children as $child) {
+									?>
+									<option value="<?php echo $child->getId(); ?>"><?php echo $child->getName(); ?></option>
+									<?php
+										}
+									?>
+								</select>
+							</div>
+
+							<input type="submit" class="btn btn-success col-sm-3" value="Add Participant">
+							<?php } ?>
+						</div>
+					</form>
+					<ul class="list-group participants-list">
+						<?php
+							foreach ($participants as $participant) {
+								switch ($participant['status']) {
+									case 'complete':
+										$class = 'text-success';
+										break;
+									case 'partly':
+										$class = 'text-warning';
+										break;
+									case 'never':
+										$class = 'text-danger';
+										break;
+								}
+						?>
+						<li class="list-group-item" data-participant-id="<?php echo $participant['participation_id']; ?>">
+							<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_STATUS_CHANGE) || $this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_DELETE)) { ?>
+							<div class="btn-group btn-group-xs pull-right">
+								<div class="btn-group btn-group-xs">
+									<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_STATUS_CHANGE)) { ?>
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+										Status <span class="caret"></span>
+									</button>
+									<?php } ?>
+
+									<ul class="dropdown-menu status-list">
+										<li><a href="<?php echo $this->url('therapy-status', ['id' => $participant['participation_id'], 'status' => 'complete']); ?>">Complete</a></li>
+										<li><a href="<?php echo $this->url('therapy-status', ['id' => $participant['participation_id'], 'status' => 'partly']); ?>">Partly</a></li>
+										<li><a href="<?php echo $this->url('therapy-status', ['id' => $participant['participation_id'], 'status' => 'never']); ?>">Never</a></li>
+									</ul>
+								</div>
+
+								<?php if ($this->hasRole(\Haymayrer\Constant\Permission::THERAPY_MEMBER_DELETE)) { ?>
+								<a href="<?php echo $participant['delete_url']; ?>" class="btn btn-group btn-danger">Delete</a>
+								<?php } ?>
+							</div>
+							<?php } ?>
+
+							<?php if ($this->hasRole(\Haymayrer\Constant\Permission::CHILD_VIEW)) { ?>
+							<a href="<?php echo $this->url('child-view', ['id' => $participant['id']]); ?>" class="status-class <?php echo $class; ?>"><?php echo $participant['name']; ?></a>
+							<?php } else { ?>
+							<?php echo $participant['name']; ?>
+							<?php } ?>
+						</li>
+						<?php
+							}
+						?>
+					</ul>
+					<small>
+						<span class="status-indicator status-indicator-success"></span> Complete
+						<span class="status-indicator status-indicator-warning"></span> Partly
+						<span class="status-indicator status-indicator-danger"></span> Never
+					</small>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<?php
+
+} else {
+
+?>
+<div class="alert alert-danger alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<strong>Warning!</strong> Requested therapy not found.
+</div>
+<?php
+
+}
+
+?>

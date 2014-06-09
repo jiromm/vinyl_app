@@ -1,0 +1,116 @@
+<div class="row">
+	<hr>
+	<h1 class="col-sm-12">
+		<?php echo $this->form->get('name')->getValue(); ?>
+		<a href="<?php echo $this->url('parent'); ?>" class="btn btn-success pull-right">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Back
+		</a>
+	</h1>
+	<hr>
+</div>
+
+<?php echo $this->form()->openTag($this->form); ?>
+
+<div class="form-group">
+	<label for="name" class="col-sm-2 control-label">Name <?php echo $this->required(); ?></label>
+	<div class="col-sm-3">
+		<?php echo $this->formInput($this->form->get('name')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="birthday" class="col-sm-2 control-label">Birthday</label>
+	<div class="col-sm-2">
+		<?php echo $this->formInput($this->form->get('birthday')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="region" class="col-sm-2 control-label">Region</label>
+	<div class="col-sm-3">
+		<?php echo $this->formSelect($this->form->get('region')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="district" class="col-sm-2 control-label">District</label>
+	<div class="col-sm-3">
+		<?php echo $this->formSelect($this->form->get('district')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="address" class="col-sm-2 control-label">Address</label>
+	<div class="col-sm-4">
+		<?php echo $this->formInput($this->form->get('address')); ?>
+	</div>
+</div>
+
+<?php
+	$hide = '';
+	$value = $this->form->get('address_residence')->getValue();
+
+	if (empty($value)) {
+		$hide = ' hide';
+?>
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<a href="#add-residence-address" class="btn btn-success btn-xs add-residence-address" data-add="Add Residence Address" data-remove="Remove Residence Address">Add Residence Address</a>
+	</div>
+</div>
+<?php
+	}
+?>
+
+<div class="form-group residence-address-form-group<?php echo $hide; ?>">
+	<label for="address_residence" class="col-sm-2 control-label">Residence Address</label>
+	<div class="col-sm-6">
+		<?php echo $this->formInput($this->form->get('address_residence')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="phone" class="col-sm-2 control-label">Phone Number <?php echo $this->required(); ?></label>
+	<div class="input-group col-sm-3">
+		<span class="input-group-addon">+374</span>
+		<?php echo $this->formInput($this->form->get('phone')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="phone_alternative" class="col-sm-2 control-label">Phone Number (Alternative)</label>
+	<div class="input-group col-sm-3">
+		<span class="input-group-addon">+374</span>
+		<?php echo $this->formInput($this->form->get('phone_alternative')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="single_mother" class="col-sm-2 control-label">Single Mother</label>
+	<div class="col-sm-1">
+		<?php echo $this->formCheckbox($this->form->get('single_mother')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="in_need" class="col-sm-2 control-label">Family In Need</label>
+	<div class="col-sm-1">
+		<?php echo $this->formCheckbox($this->form->get('in_need')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="description" class="col-sm-2 control-label">Description</label>
+	<div class="col-sm-10">
+		<?php echo $this->formTextarea($this->form->get('description')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-2">
+		<?php echo $this->formSubmit($this->form->get('submit')); ?>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>

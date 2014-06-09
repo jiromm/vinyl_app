@@ -1,0 +1,54 @@
+<div class="row">
+	<hr>
+	<h1 class="col-sm-12">
+		Children
+
+		<?php if ($this->hasRole(\Haymayrer\Constant\Permission::CHILD_ADD)) { ?>
+		<a href="<?php echo $this->url('child-add'); ?>" class="btn btn-success pull-right">Add New Child</a>
+		<?php } ?>
+	</h1>
+	<hr>
+</div>
+<div class="row">
+	<table id="parents-table">
+		<thead>
+		<tr>
+			<th width="20%">Full Name</th>
+			<th width="20%">Parent</th>
+			<th width="20%">Disease</th>
+			<th width="15%">Birthday</th>
+			<th width="15%">Functions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php
+		if ($this->data) {
+			/** @var \Haymayrer\Entity\Child $row */
+			foreach ($this->data as $row) {
+				?>
+				<tr>
+					<td><?php echo $row->getName(); ?></td>
+					<td><?php echo $row->getParentName(); ?></td>
+					<td><?php echo \Haymayrer\Constant\DBData::getDisease($row->getDisease()); ?></td>
+					<td><?php echo $row->getBirthday(); ?></td>
+					<td>
+						<a href="<?php echo $this->url('child-view', ['id' => $row->getId()]); ?>" class="label label-success">View</a>
+
+						<?php if ($this->hasRole(\Haymayrer\Constant\Permission::CHILD_EDIT)) { ?>
+						<span class="text-muted">/</span>
+						<a href="<?php echo $this->url('child-edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
+						<?php } ?>
+
+						<?php if ($this->hasRole(\Haymayrer\Constant\Permission::CHILD_DELETE)) { ?>
+						<span class="text-muted">/</span>
+						<a href="<?php echo $this->url('child-delete', ['id' => $row->getId()]); ?>" class="label label-danger">Delete</a>
+						<?php } ?>
+					</td>
+				</tr>
+			<?php
+			}
+		}
+		?>
+		</tbody>
+	</table>
+</div>
