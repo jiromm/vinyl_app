@@ -2,11 +2,11 @@
 
 namespace Vinyl\Mapper;
 
+use Vinyl\Entity\AttendanceExtended;
 use Vinyl\Library\CommonTableGateway;
 use Vinyl\Constant\DBTable;
 use Zend\Db\Sql\Select;
-use Zend\Http\Request;
 
-class Parents extends CommonTableGateway {
-	protected $tableName = DBTable::PARENT;
+class House extends CommonTableGateway {
+	protected $tableName = DBTable::HOUSE;
 }

@@ -1,0 +1,28 @@
+<div class="row">
+	<hr>
+	<h1 class="col-sm-12">
+		Add New Category
+		<a href="<?php echo $this->url('category'); ?>" class="btn btn-success pull-right">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Back
+		</a>
+	</h1>
+	<hr>
+</div>
+
+<?php echo $this->form()->openTag($this->form); ?>
+
+<div class="form-group">
+	<label for="name" class="col-sm-2 control-label">Name <?php echo $this->required(); ?></label>
+	<div class="col-sm-3">
+		<?php echo $this->formInput($this->form->get('name')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-2">
+		<?php echo $this->formSubmit($this->form->get('submit')); ?>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>

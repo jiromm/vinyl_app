@@ -7,6 +7,6 @@ use Vinyl\Library\CommonTableGateway;
 use Vinyl\Constant\DBTable;
 use Zend\Db\Sql\Select;
 
-class Attendance extends CommonTableGateway {
-	protected $tableName = DBTable::ATTENDANCE;
+class Category extends CommonTableGateway {
+	protected $tableName = DBTable::CATEGORY;
 }

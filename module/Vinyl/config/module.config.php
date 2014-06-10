@@ -33,185 +33,134 @@ return array(
 			        ),
 		        ),
 	        ),
-	        'parent' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/parent[/]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Parent',
-				        'action'     => 'index',
-			        ),
-		        ),
-	        ),
-	        'parent-add' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/parent/add[/]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Parent',
-				        'action'     => 'add',
-			        ),
-		        ),
-	        ),
-	        'parent-edit' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/parent/edit/[:id]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Parent',
-				        'action'     => 'edit',
-			        ),
-		        ),
-	        ),
-	        'parent-view' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/parent/view/[:id]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Parent',
-				        'action'     => 'view',
-			        ),
-		        ),
-	        ),
-	        'parent-delete' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/parent/delete/[:id]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Parent',
-				        'action'     => 'delete',
-			        ),
-		        ),
-	        ),
-	        'child' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/child[/]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Child',
-				        'action'     => 'index',
-			        ),
-		        ),
-	        ),
-	        'child-add' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/child/add[/]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Child',
-				        'action'     => 'add',
-			        ),
-		        ),
-	        ),
-	        'child-edit' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/child/edit/[:id]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Child',
-				        'action'     => 'edit',
-			        ),
-		        ),
-	        ),
-	        'child-view' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/child/view/[:id]',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Child',
-				        'action'     => 'view',
-			        ),
-		        ),
-	        ),
-	        'child-delete' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/child/delete/:id',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Child',
-				        'action'     => 'delete',
-			        ),
-		        ),
-	        ),
-	        'therapy' => array(
+	        'category' => array(
 		        'type' => 'Literal',
 		        'options' => array(
-			        'route' => '/therapy',
+			        'route' => '/category',
 			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
+				        'controller' => 'Vinyl\Controller\Category',
 				        'action'     => 'index',
 			        ),
 		        ),
+		        'may_terminate' => true,
+		        'child_routes' => array(
+			        'add' => array(
+				        'type' => 'Literal',
+				        'options' => array(
+					        'route' => '/add',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'add',
+					        ),
+				        ),
+			        ),
+			        'edit' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/edit/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'edit',
+					        ),
+				        ),
+			        ),
+			        'delete' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/delete/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'delete',
+					        ),
+				        ),
+			        ),
+		        )
 	        ),
-	        'therapy-add' => array(
-		        'type' => 'Segment',
+	        'fence' => array(
+		        'type' => 'Literal',
 		        'options' => array(
-			        'route' => '/therapy/add[/]',
+			        'route' => '/fence',
 			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'add',
+				        'controller' => 'Vinyl\Controller\Fence',
+				        'action'     => 'index',
 			        ),
 		        ),
+		        'may_terminate' => true,
+		        'child_routes' => array(
+			        'add' => array(
+				        'type' => 'Literal',
+				        'options' => array(
+					        'route' => '/add',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Fence',
+						        'action'     => 'add',
+					        ),
+				        ),
+			        ),
+			        'edit' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/edit/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Fence',
+						        'action'     => 'edit',
+					        ),
+				        ),
+			        ),
+			        'delete' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/delete/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Fence',
+						        'action'     => 'delete',
+					        ),
+				        ),
+			        ),
+		        )
 	        ),
-	        'therapy-delete' => array(
-		        'type' => 'Segment',
+	        'house' => array(
+		        'type' => 'Literal',
 		        'options' => array(
-			        'route' => '/therapy/delete/:id',
+			        'route' => '/category',
 			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'delete',
+				        'controller' => 'Vinyl\Controller\House',
+				        'action'     => 'index',
 			        ),
 		        ),
-	        ),
-	        'therapy-view' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/therapy/view/:id',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'view',
+		        'may_terminate' => true,
+		        'child_routes' => array(
+			        'add' => array(
+				        'type' => 'Literal',
+				        'options' => array(
+					        'route' => '/add',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\House',
+						        'action'     => 'add',
+					        ),
+				        ),
 			        ),
-		        ),
-	        ),
-	        'therapy-edit' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/therapy/edit/:id',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'edit',
+			        'edit' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/edit/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\House',
+						        'action'     => 'edit',
+					        ),
+				        ),
 			        ),
-		        ),
-	        ),
-	        'therapy-status' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/therapy/status/:id/:status',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'status',
+			        'delete' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/delete/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\House',
+						        'action'     => 'delete',
+					        ),
+				        ),
 			        ),
-		        ),
-	        ),
-	        'therapy-add-participant' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/therapy/add/:id/:child_id',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'add-participant',
-			        ),
-		        ),
-	        ),
-	        'therapy-delete-participant' => array(
-		        'type' => 'Segment',
-		        'options' => array(
-			        'route' => '/therapy/delete/:id/:child_id',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Therapy',
-				        'action'     => 'delete-participant',
-			        ),
-		        ),
+		        )
 	        ),
 	        'logout' => array(
 		        'type' => 'Segment',
@@ -261,18 +210,14 @@ return array(
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
         'aliases' => array(
-            'translator' => 'MvcTranslator',
+	        'translator' => 'MvcTranslator',
             'adapter' => 'Zend\Db\Adapter\Adapter',
 	        'auth' => 'Vinyl\Service\AuthService',
 
 	        // Mappers
-            'UserMapper' => 'Vinyl\Mapper\User',
-            'ParentsMapper' => 'Vinyl\Mapper\Parents',
-            'ChildMapper' => 'Vinyl\Mapper\Child',
-            'AttendanceMapper' => 'Vinyl\Mapper\Attendance',
-            'ParticipationMapper' => 'Vinyl\Mapper\Participation',
-            'PermissionMapper' => 'Vinyl\Mapper\Permission',
-            'RelUserPermissionMapper' => 'Vinyl\Mapper\RelUserPermission',
+            'CategoryMapper' => 'Vinyl\Mapper\Category',
+            'FenceMapper' => 'Vinyl\Mapper\Fence',
+            'HouseMapper' => 'Vinyl\Mapper\House',
         ),
 	    'factories' => array(
 		    'Zend\Db\Adapter\Adapter' => function($sm) {
@@ -288,67 +233,43 @@ return array(
 				    'hostname' => $dbParams['hostname'],
 				]);
 		    },
-		    'Vinyl\Mapper\User' => function($sm) {
-			    return new \Vinyl\Mapper\User(
+		    'Vinyl\Mapper\Category' => function($sm) {
+			    return new \Vinyl\Mapper\Category(
 				    $sm->get('adapter'),
-				    new \Vinyl\Entity\User()
+				    new \Vinyl\Entity\Category()
 			    );
 		    },
-		    'Vinyl\Mapper\Parents' => function($sm) {
-			    return new \Vinyl\Mapper\Parents(
+		    'Vinyl\Mapper\Fence' => function($sm) {
+			    return new \Vinyl\Mapper\Fence(
 				    $sm->get('adapter'),
-				    new \Vinyl\Entity\Parents()
+				    new \Vinyl\Entity\Fence()
 			    );
 		    },
-		    'Vinyl\Mapper\Child' => function($sm) {
-			    return new \Vinyl\Mapper\Child(
+		    'Vinyl\Mapper\House' => function($sm) {
+			    return new \Vinyl\Mapper\House(
 				    $sm->get('adapter'),
-				    new \Vinyl\Entity\Child()
-			    );
-		    },
-		    'Vinyl\Mapper\Attendance' => function($sm) {
-			    return new \Vinyl\Mapper\Attendance(
-				    $sm->get('adapter'),
-				    new \Vinyl\Entity\Attendance()
-			    );
-		    },
-		    'Vinyl\Mapper\Participation' => function($sm) {
-			    return new \Vinyl\Mapper\Participation(
-				    $sm->get('adapter'),
-				    new \Vinyl\Entity\Participation()
-			    );
-		    },
-		    'Vinyl\Mapper\Permission' => function($sm) {
-			    return new \Vinyl\Mapper\Permission(
-				    $sm->get('adapter'),
-				    new \Vinyl\Entity\Permission()
-			    );
-		    },
-		    'Vinyl\Mapper\RelUserPermission' => function($sm) {
-			    return new \Vinyl\Mapper\RelUserPermission(
-				    $sm->get('adapter'),
-				    new \Vinyl\Entity\RelUserPermission()
+				    new \Vinyl\Entity\House()
 			    );
 		    },
 		    'Vinyl\Service\AuthService' => 'Vinyl\Service\AuthServiceFactory',
 	    ),
     ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
+	'translator' => array(
+		'locale' => 'en_US',
+		'translation_file_patterns' => array(
+			array(
+				'type'     => 'gettext',
+				'base_dir' => __DIR__ . '/../language',
+				'pattern'  => '%s.mo',
+			),
+		),
+	),
     'controllers' => array(
         'invokables' => array(
             'Vinyl\Controller\Index' => 'Vinyl\Controller\IndexController',
-            'Vinyl\Controller\Parent' => 'Vinyl\Controller\ParentController',
-            'Vinyl\Controller\Child' => 'Vinyl\Controller\ChildController',
-            'Vinyl\Controller\Therapy' => 'Vinyl\Controller\TherapyController',
+            'Vinyl\Controller\Category' => 'Vinyl\Controller\CategoryController',
+            'Vinyl\Controller\Fence' => 'Vinyl\Controller\FenceController',
+            'Vinyl\Controller\House' => 'Vinyl\Controller\HouseController',
         ),
 	    'factories' => array(
 		    'Vinyl\Controller\Auth' => 'Vinyl\Controller\AuthControllerFactory',
@@ -376,8 +297,7 @@ return array(
     // Placeholder for console routes
     'console' => array(
         'router' => array(
-            'routes' => array(
-            ),
+            'routes' => array(),
         ),
     ),
 );

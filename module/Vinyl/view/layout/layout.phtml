@@ -2,22 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle($this->translate('Vinyl Fences Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('Vinyl Fences Application')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+        ; ?>
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
             ->prependStylesheet($this->basePath() . '/css/jquery.dataTables.css')
-            ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-            ->prependStylesheet($this->basePath() . '/css/selectize.css')
-            ->prependStylesheet($this->basePath() . '/css/selectize.bootstrap3.css')
             ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
-            ->prependStylesheet($this->basePath() . '/css/jquery.pnotify.default.css')
-	        ->prependStylesheet($this->basePath() . '/css/style.css') ?>
+	        ->prependStylesheet($this->basePath() . '/css/style.css')
+        ; ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -25,7 +22,6 @@
 	        ->prependFile($this->basePath() . '/js/jquery.dataTables.min.js')
 	        ->prependFile($this->basePath() . '/js/custom.validation.js')
             ->prependFile($this->basePath() . '/js/jquery.validate.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.pnotify.min.js')
             ->prependFile($this->basePath() . '/js/jquery.min.js')
             ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
             ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
@@ -42,43 +38,34 @@
                         <span class="icon-bar"></span>
                     </button>
                     <span class="navbar-brand">
-	                    <a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Vinyl Fences Application') ?></a>
+	                    <a href="<?php echo $this->url('home') ?>">Vinyl Fences Application</a>
                     </span>
                 </div>
 	            <?php if ($this->ident()) { ?>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-	                    <?php if ($this->hasRole(\Vinyl\Constant\Permission::PARENT_VIEW)) { ?>
-                        <li><a href="<?php echo $this->url('parent') ?>"><?php echo $this->translate('Parents') ?></a></li>
-	                    <?php } ?>
-
-	                    <?php if ($this->hasRole(\Vinyl\Constant\Permission::CHILD_VIEW)) { ?>
-                        <li><a href="<?php echo $this->url('child') ?>"><?php echo $this->translate('Children') ?></a></li>
-	                    <?php } ?>
-
-	                    <?php if ($this->hasRole(\Vinyl\Constant\Permission::THERAPY_VIEW)) { ?>
-                        <li><a href="<?php echo $this->url('therapy') ?>"><?php echo $this->translate('Therapy') ?></a></li>
-	                    <?php } ?>
+                        <li><a href="<?php echo $this->url('house') ?>">House</a></li>
+                        <li><a href="<?php echo $this->url('fence') ?>">Fence</a></li>
+                        <li><a href="<?php echo $this->url('category') ?>">Category</a></li>
                     </ul>
 	                <ul class="nav navbar-nav pull-right">
-		                <li><a href="<?php echo $this->url('logout') ?>"><span class="glyphicon glyphicon-log-out"></span> <?php echo $this->translate('Logout') ?></a></li>
+		                <li><a href="<?php echo $this->url('logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 	                </ul>
-                </div><!--/.nav-collapse -->
+                </div>
 	            <?php } ?>
             </div>
         </nav>
         <div class="container">
             <?php echo $this->content; ?>
-        </div> <!-- /container -->
+        </div>
         <div class="container">
 	        <hr>
 	        <footer>
-		        <p>&copy; <?php echo date('Y') ?> by Aram Baghdasaryan. <?php echo $this->translate('All rights reserved.') ?></p>
+		        <p>&copy; <?php echo date('Y') ?> by <a href="mailto:aram.baghdasaryan@gmail.com">Aram Baghdasaryan</a>. All rights reserved.</p>
 	        </footer>
         </div>
 	        <?php echo $this->inlineScript()
 		        ->prependFile($this->basePath() . '/js/custom.js')
-		        ->prependFile($this->basePath() . '/js/selectize.min.js')
 	        ; ?>
     </body>
 </html>

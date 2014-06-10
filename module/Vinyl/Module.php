@@ -5,23 +5,13 @@ namespace Vinyl;
 use Vinyl\View\Helper\HasRoleHelper;
 use Vinyl\View\Helper\IdentityHelper;
 use Zend\Authentication\AuthenticationService;
-use Zend\Debug\Debug;
-use Zend\Http\Request;
-use Zend\ModuleManager\ModuleEvent;
-use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\Mvc\Service\RouterFactory;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class Module {
-	public function init(ModuleManager $moduleManager) {
-
-	}
-
     public function onBootstrap(MvcEvent $e) {
 	    /**
 	     * @var Application $app
@@ -63,7 +53,7 @@ class Module {
 	public function getViewHelperConfig() {
 		return array(
 			'invokables' => array(
-				'required' => 'Haymayrer\View\Helper\RequiredHelper',
+				'required' => 'Vinyl\View\Helper\RequiredHelper',
 			),
 			'factories' => array(
 				'ident' => function($sm) {
@@ -71,10 +61,6 @@ class Module {
 					return new IdentityHelper(
 						$sm->getServiceLocator()->get('auth')
 					);
-				},
-				'hasRole' => function($sm) {
-					/** @var ServiceLocatorAwareInterface $sm */
-					return new HasRoleHelper($sm);
 				},
 			)
 		);
