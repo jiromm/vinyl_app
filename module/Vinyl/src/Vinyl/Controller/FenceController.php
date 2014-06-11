@@ -49,6 +49,7 @@ class FenceController extends AbstractActionController {
 			if ($fenceForm->isValid()) {
 				$fenceEntity = new FenceEntity();
 				$fenceEntity->setName($request->getPost('name'));
+				$fenceEntity->setCategoryId($request->getPost('category_id'));
 
 				$mapper = $this->getServiceLocator()->get('FenceMapper');
 				$mapper->insert($fenceEntity);
@@ -77,8 +78,8 @@ class FenceController extends AbstractActionController {
 
 					$fenceForm->setMessages(['image' => $error]);
 				} else {
-					$dir = APPLICATION_PATH . '/' . PUBLIC_HTML . '/uploads/team/' . $lastInsertId;
-					$filename = 'avatar.jpeg';
+					$dir = './public/upload/fence/' . $lastInsertId;
+					$filename = 'big.jpeg';
 
 					if (!mkdir($dir, 777, true)) {
 						throw new \Exception('Cannot create directory: ' . $dir);
@@ -88,12 +89,13 @@ class FenceController extends AbstractActionController {
 					$adapter->addFilter('Rename', $dir .'/' . $filename, $post['image']['name']);
 
 					if (!$adapter->receive($post['image']['name'])) {
-						throw new \Exception('Cannot create avatar: ' . $filename);
+						throw new \Exception('Cannot create big image: ' . $filename);
 					}
 				}
 
 				$this->redirect()->toRoute('fence');
 			} else {
+				$error = $fenceForm->getMessages();
 				$fenceForm->populateValues($request->getPost());
 			}
 		}
@@ -101,47 +103,99 @@ class FenceController extends AbstractActionController {
 		return new ViewModel([
 			'form' => $fenceForm,
 			'available' => $fenceForm->isAvailable(),
+			'error' => isset($error) ? $error : false,
 		]);
 	}
 
 	public function editAction() {
 		/**
 		 * @var Request $request
-		 * @var CategoryMapper $mapper
+		 * @var FenceMapper $mapper
 		 */
 		$request = $this->getRequest();
 		$id = $this->params()->fromRoute('id');
 
-		$categoryForm = new Category($this->getServiceLocator(), $this->url()->fromRoute('category/edit', [
+		$fenceForm = new Fence($this->getServiceLocator(), $this->url()->fromRoute('fence/edit', [
 			'id' => $id,
 		]));
-		$categoryForm->prepare();
+		$fenceForm->prepare();
 
 		if ($request->isPost()) {
-			$categoryForm->setData($request->getPost());
+			$post = array_merge_recursive(
+				$request->getPost()->toArray(),
+				$request->getFiles()->toArray()
+			);
 
-			if ($categoryForm->isValid()) {
-				$categoryEntity = new CategoryEntity();
-				$categoryEntity->setName($request->getPost('name'));
+			$fenceForm->setData($post);
 
-				$mapper = $this->getServiceLocator()->get('CategoryMapper');
-				$mapper->update($categoryEntity, ['id' => $id]);
+			if ($fenceForm->isValid()) {
+				$fenceEntity = new FenceEntity();
+				$fenceEntity->setName($request->getPost('name'));
 
-				$this->redirect()->toRoute('category');
+				$mapper = $this->getServiceLocator()->get('FenceMapper');
+				$mapper->update($fenceEntity, ['id' => $id]);
+
+				$lastInsertId = $id;
+
+				$size = new Size([
+					'min' => 20,
+					'max' => 2000000,
+				]);
+				$extension = new Extension(['extension' => ['jpg', 'jpeg']]);
+				$isImage = new IsImage();
+
+				$adapter = new Http();
+				$adapter->setValidators([$size], $post['image']['size']);
+				$adapter->setValidators([$extension], $post['image']['name']);
+				$adapter->setValidators([$isImage], $post['image']['type']);
+
+				if (!$adapter->isValid()){
+					$dataError = $adapter->getMessages();
+					$error = [];
+
+					foreach($dataError as $key => $row) {
+						$error[] = $row;
+					}
+
+					$fenceForm->setMessages(['image' => $error]);
+				} else {
+					$dir = './public/upload/fence/' . $lastInsertId;
+					$filename = 'big.jpeg';
+
+					if (!is_dir($dir)) {
+						if (!mkdir($dir, 777, true)) {
+							throw new \Exception('Cannot create directory: ' . $dir);
+						}
+					}
+
+					unlink($dir .'/' . $filename);
+
+					$adapter->setDestination($dir);
+					$adapter->addFilter('Rename', $dir .'/' . $filename, $post['image']['name']);
+
+					if (!$adapter->receive($post['image']['name'])) {
+						throw new \Exception('Cannot create big image: ' . $filename);
+					}
+				}
+
+				$this->redirect()->toRoute('fence');
 			} else {
-				$categoryForm->populateValues($request->getPost());
+				$error = $fenceForm->getMessages();
+				$fenceForm->populateValues($request->getPost());
 			}
 		} else {
-			$mapper = $this->getServiceLocator()->get('CategoryMapper');
+			$mapper = $this->getServiceLocator()->get('FenceMapper');
 			$result = $mapper->fetchOne([
 				'id' => $id,
 			]);
 
-			$categoryForm->populateValues($result->exchangeArray());
+			$fenceForm->populateValues($result->exchangeArray());
 		}
 
 		return new ViewModel([
-			'form' => $categoryForm,
+			'form' => $fenceForm,
+			'error' => isset($error) ? $error : false,
+			'id' => $id,
 		]);
 	}
 
@@ -149,14 +203,14 @@ class FenceController extends AbstractActionController {
 		$id = $this->params()->fromRoute('id');
 
 		/**
-		 * @var CategoryMapper $mapper
+		 * @var FenceMapper $mapper
 		 */
-		$mapper = $this->getServiceLocator()->get('CategoryMapper');
+		$mapper = $this->getServiceLocator()->get('FenceMapper');
 		$mapper->delete([
 			'id' => $id,
 		]);
 
-		$this->redirect()->toRoute('category');
+		$this->redirect()->toRoute('fence');
 
 		return new ViewModel([
 			'id' => $this->params()->fromRoute('id'),

@@ -11,6 +11,13 @@
 </div>
 
 <?php if ($this->available) { ?>
+	<?php if ($this->error) { ?>
+	<div class="alert alert-danger">
+		<strong>Oh snap!</strong>
+		<p>There was an error!</p>
+	</div>
+	<?php } ?>
+
 	<?php echo $this->form()->openTag($this->form); ?>
 
 <div class="form-group">

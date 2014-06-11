@@ -10,6 +10,13 @@
 	<hr>
 </div>
 
+<?php if ($this->error) { ?> <?php \Zend\Debug\Debug::dump($this->error); ?>
+	<div class="alert alert-danger">
+		<strong>Oh snap!</strong>
+		<p>There was an error!</p>
+	</div>
+<?php } ?>
+
 <?php echo $this->form()->openTag($this->form); ?>
 
 <div class="form-group">
@@ -23,6 +30,19 @@
 	<label for="category_id" class="col-sm-2 control-label">Category <?php echo $this->required(); ?></label>
 	<div class="col-sm-3">
 		<?php echo $this->formSelect($this->form->get('category_id')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="name" class="col-sm-2 control-label">Image <?php echo $this->required(); ?></label>
+	<div class="col-sm-4">
+		<?php echo $this->formFile($this->form->get('image')); ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-3">
+		<img src="<?php echo BASE_DIR; ?>/upload/fence/<?php echo $this->id; ?>/big.jpeg?sh<?php echo mt_rand(1000000, 9999999); ?>" class="thumbnail" width="200">
 	</div>
 </div>
 

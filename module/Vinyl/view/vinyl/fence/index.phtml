@@ -25,6 +25,7 @@
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
 				<td><?php echo $row->getName(); ?></td>
+				<td><?php echo $row->getCategoryId(); ?></td>
 				<td>
 					<a href="<?php echo $this->url('fence/edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
 					<span class="text-muted">/</span>
