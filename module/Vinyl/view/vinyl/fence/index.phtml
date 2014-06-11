@@ -1,33 +1,34 @@
 <div class="row">
 	<hr>
 		<h1 class="col-sm-12">
-			Categories
-			<a href="<?php echo $this->url('category/add'); ?>" class="btn btn-success pull-right">Add New Category</a>
+			Fences
+			<a href="<?php echo $this->url('fence/add'); ?>" class="btn btn-success pull-right">Add New Fence</a>
 		</h1>
 	<hr>
 </div>
 <div class="row">
-	<table class="table dataTable" id="category-table">
+	<table class="table dataTable" id="fence-table">
 		<thead>
 			<tr>
 				<th width="20%">id</th>
 				<th>Name</th>
+				<th>Category</th>
 				<th width="15%">Functions</th>
 			</tr>
 		</thead>
 		<tbody>
 		<?php
 			if ($this->data->count()) {
-				/** @var \Vinyl\Entity\Category $row */
+				/** @var \Vinyl\Entity\Fence $row */
 				foreach ($this->data as $row) {
 		?>
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
 				<td><?php echo $row->getName(); ?></td>
 				<td>
-					<a href="<?php echo $this->url('category/edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
+					<a href="<?php echo $this->url('fence/edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
 					<span class="text-muted">/</span>
-					<a href="<?php echo $this->url('category/delete', ['id' => $row->getId()]); ?>" class="label label-danger">Delete</a>
+					<a href="<?php echo $this->url('fence/delete', ['id' => $row->getId()]); ?>" class="label label-danger">Delete</a>
 				</td>
 			</tr>
 		<?php
@@ -36,6 +37,7 @@
 		?>
 			<tr>
 				<td>No Data</td>
+				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 			</tr>

@@ -16,11 +16,11 @@ class Category extends Form {
 	 * @param string $action
 	 */
 	public function __construct($sm, $action) {
-		parent::__construct('child');
+		parent::__construct('category');
 
 		$this->setAttribute('action', $action);
 		$this->setAttribute('method', 'post');
-		$this->setAttribute('class', 'form-horizontal child-form');
+		$this->setAttribute('class', 'form-horizontal category-form');
 		$this->setInputFilter(new CategoryFilter());
 
 		$this->add([
