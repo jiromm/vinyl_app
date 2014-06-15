@@ -7,6 +7,7 @@ use Vinyl\Library\EntityBase;
 class Fence extends EntityBase {
 	protected $id;
 	protected $category_id;
+	protected $category;
 	protected $name;
 
 	public function setId($id) {
@@ -23,6 +24,10 @@ class Fence extends EntityBase {
 
 	public function getCategoryId() {
 		return $this->category_id;
+	}
+
+	public function getCategory() {
+		return $this->category;
 	}
 
 	public function setName($name) {

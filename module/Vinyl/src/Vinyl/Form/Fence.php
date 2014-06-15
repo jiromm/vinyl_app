@@ -53,18 +53,18 @@ class Fence extends Form {
 			'type' => 'Zend\Form\Element\File',
 			'attributes' => array(
 				'class' => 'form-control',
-				'required' => 'required',
+				'accept' => 'image/png',
 			),
 		));
 
-//		$this->add(array(
-//			'name' => 'icon',
-//			'type' => 'Zend\Form\Element\File',
-//			'attributes' => array(
-//				'class' => 'form-control',
-//				'required' => 'required',
-//			),
-//		));
+		$this->add(array(
+			'name' => 'icon',
+			'type' => 'Zend\Form\Element\File',
+			'attributes' => array(
+				'class' => 'form-control',
+				'accept' => 'image/png',
+			),
+		));
 
 		$this->add([
 			'name' => 'submit',

@@ -33,6 +33,39 @@ return array(
 			        ),
 		        ),
 	        ),
+	        'api' => array(
+		        'type' => 'Literal',
+		        'options' => array(
+			        'route' => '/api',
+			        'defaults' => array(
+				        'controller' => 'Vinyl\Controller\Api',
+				        'action'     => 'index',
+			        ),
+		        ),
+		        'may_terminate' => true,
+		        'child_routes' => array(
+			        'fence' => array(
+				        'route' => 'Literal',
+				        'options' => array(
+					        'route' => '/fence',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Api',
+						        'action'     => 'fence',
+					        ),
+				        ),
+			        ),
+			        'house' => array(
+				        'route' => 'Literal',
+				        'options' => array(
+					        'route' => '/house',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Api',
+						        'action'     => 'house',
+					        ),
+				        ),
+			        ),
+		        ),
+	        ),
 	        'category' => array(
 		        'type' => 'Literal',
 		        'options' => array(
@@ -267,6 +300,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Vinyl\Controller\Index' => 'Vinyl\Controller\IndexController',
+            'Vinyl\Controller\Api' => 'Vinyl\Controller\ApiController',
             'Vinyl\Controller\Category' => 'Vinyl\Controller\CategoryController',
             'Vinyl\Controller\Fence' => 'Vinyl\Controller\FenceController',
             'Vinyl\Controller\House' => 'Vinyl\Controller\HouseController',

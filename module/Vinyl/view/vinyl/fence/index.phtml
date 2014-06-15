@@ -10,7 +10,7 @@
 	<table class="table dataTable" id="fence-table">
 		<thead>
 			<tr>
-				<th width="20%">id</th>
+				<th width="1">id</th>
 				<th>Name</th>
 				<th>Category</th>
 				<th width="15%">Functions</th>
@@ -25,7 +25,7 @@
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
 				<td><?php echo $row->getName(); ?></td>
-				<td><?php echo $row->getCategoryId(); ?></td>
+				<td><?php echo $row->getCategory(); ?></td>
 				<td>
 					<a href="<?php echo $this->url('fence/edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
 					<span class="text-muted">/</span>

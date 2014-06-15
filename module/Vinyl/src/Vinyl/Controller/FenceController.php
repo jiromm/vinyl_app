@@ -21,7 +21,7 @@ class FenceController extends AbstractActionController {
 	     * @var FenceMapper $mapper
 	     */
 	    $mapper = $this->getServiceLocator()->get('FenceMapper');
-	    $result = $mapper->fetchAll();
+	    $result = $mapper->fetchAllWithCategory();
 
 	    return new ViewModel([
 		    'data' => $result,
@@ -55,41 +55,47 @@ class FenceController extends AbstractActionController {
 				$mapper->insert($fenceEntity);
 
 				$lastInsertId = $mapper->lastInsertValue;
+				$dir = './public/upload/fence/' . $lastInsertId;
 
-				$size = new Size([
-					'min' => 20,
-					'max' => 2000000,
-				]);
-				$extension = new Extension(['extension' => ['jpg', 'jpeg']]);
-				$isImage = new IsImage();
-
-				$adapter = new Http();
-				$adapter->setValidators([$size], $post['image']['size']);
-				$adapter->setValidators([$extension], $post['image']['name']);
-				$adapter->setValidators([$isImage], $post['image']['type']);
-
-				if (!$adapter->isValid()){
-					$dataError = $adapter->getMessages();
-					$error = [];
-
-					foreach($dataError as $key => $row) {
-						$error[] = $row;
-					}
-
-					$fenceForm->setMessages(['image' => $error]);
-				} else {
-					$dir = './public/upload/fence/' . $lastInsertId;
-					$filename = 'big.jpeg';
-
+				if (!is_dir($dir)) {
 					if (!mkdir($dir, 777, true)) {
 						throw new \Exception('Cannot create directory: ' . $dir);
 					}
+				}
 
-					$adapter->setDestination($dir);
-					$adapter->addFilter('Rename', $dir .'/' . $filename, $post['image']['name']);
+				if ($_FILES['image']['name']) {
+					if (!$_FILES['image']['error']) {
+						$newFileName = $dir . '/big.png';
 
-					if (!$adapter->receive($post['image']['name'])) {
-						throw new \Exception('Cannot create big image: ' . $filename);
+						if ($_FILES['image']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)), ['png'])) {
+								move_uploaded_file($_FILES['image']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! PNG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['image']['error'];
+					}
+				}
+
+				if ($_FILES['icon']['name']) {
+					if (!$_FILES['icon']['error']) {
+						$newFileName = $dir . '/icon.png';
+
+						if ($_FILES['icon']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)), ['png'])) {
+								move_uploaded_file($_FILES['icon']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! PNG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['icon']['error'];
 					}
 				}
 
@@ -136,49 +142,49 @@ class FenceController extends AbstractActionController {
 				$mapper->update($fenceEntity, ['id' => $id]);
 
 				$lastInsertId = $id;
+				$dir = './public/upload/fence/' . $lastInsertId;
 
-				$size = new Size([
-					'min' => 20,
-					'max' => 2000000,
-				]);
-				$extension = new Extension(['extension' => ['jpg', 'jpeg']]);
-				$isImage = new IsImage();
-
-				$adapter = new Http();
-				$adapter->setValidators([$size], $post['image']['size']);
-				$adapter->setValidators([$extension], $post['image']['name']);
-				$adapter->setValidators([$isImage], $post['image']['type']);
-
-				if (!$adapter->isValid()){
-					$dataError = $adapter->getMessages();
-					$error = [];
-
-					foreach($dataError as $key => $row) {
-						$error[] = $row;
-					}
-
-					$fenceForm->setMessages(['image' => $error]);
-				} else {
-					$dir = './public/upload/fence/' . $lastInsertId;
-					$filename = 'big.jpeg';
-
-					if (!is_dir($dir)) {
-						if (!mkdir($dir, 777, true)) {
-							throw new \Exception('Cannot create directory: ' . $dir);
-						}
-					}
-
-					unlink($dir .'/' . $filename);
-
-					$adapter->setDestination($dir);
-					$adapter->addFilter('Rename', $dir .'/' . $filename, $post['image']['name']);
-
-					if (!$adapter->receive($post['image']['name'])) {
-						throw new \Exception('Cannot create big image: ' . $filename);
+				if (!is_dir($dir)) {
+					if (!mkdir($dir, 777, true)) {
+						throw new \Exception('Cannot create directory: ' . $dir);
 					}
 				}
 
-				$this->redirect()->toRoute('fence');
+				if ($_FILES['image']['name']) {
+					if (!$_FILES['image']['error']) {
+						$newFileName = $dir . '/big.png';
+
+						if ($_FILES['image']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)), ['png'])) {
+								move_uploaded_file($_FILES['image']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! PNG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['image']['error'];
+					}
+				}
+
+				if ($_FILES['icon']['name']) {
+					if (!$_FILES['icon']['error']) {
+						$newFileName = $dir . '/icon.png';
+
+						if ($_FILES['icon']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)), ['png'])) {
+								move_uploaded_file($_FILES['icon']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! PNG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['icon']['error'];
+					}
+				}
 			} else {
 				$error = $fenceForm->getMessages();
 				$fenceForm->populateValues($request->getPost());
