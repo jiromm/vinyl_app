@@ -76,6 +76,24 @@ class HouseController extends AbstractActionController {
 					}
 				}
 
+				if ($_FILES['icon']['name']) {
+					if (!$_FILES['icon']['error']) {
+						$newFileName = $dir . '/icon.jpeg';
+
+						if ($_FILES['icon']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION)), ['jpg', 'jpeg'])) {
+								move_uploaded_file($_FILES['icon']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! JPEG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['icon']['error'];
+					}
+				}
+
 				$this->redirect()->toRoute('house');
 			} else {
 				$houseForm->populateValues($request->getPost());
@@ -135,6 +153,24 @@ class HouseController extends AbstractActionController {
 						}
 					} else {
 						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['image']['error'];
+					}
+				}
+
+				if ($_FILES['icon']['name']) {
+					if (!$_FILES['icon']['error']) {
+						$newFileName = $dir . '/icon.jpeg';
+
+						if ($_FILES['icon']['size'] > (1024000)) {
+							$error = 'Oops! Your file\'s size is to large.';
+						} else {
+							if (in_array(strtolower(pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION)), ['jpg', 'jpeg'])) {
+								move_uploaded_file($_FILES['icon']['tmp_name'], $newFileName);
+							} else {
+								$error = 'Ooops! JPEG please.';
+							}
+						}
+					} else {
+						$error = 'Ooops! Your upload triggered the following error: ' . $_FILES['icon']['error'];
 					}
 				}
 			} else {

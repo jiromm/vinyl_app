@@ -11,6 +11,7 @@
 		<thead>
 			<tr>
 				<th width="1">id</th>
+				<th width="1">Icon</th>
 				<th>Name</th>
 				<th>Category</th>
 				<th width="15%">Functions</th>
@@ -24,6 +25,7 @@
 		?>
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
+				<td><img src="<?php echo HOST . 'upload/fence/' . $row->getId() . '/icon.png'; ?>" class="fence-preview"></td>
 				<td><?php echo $row->getName(); ?></td>
 				<td><?php echo $row->getCategory(); ?></td>
 				<td>

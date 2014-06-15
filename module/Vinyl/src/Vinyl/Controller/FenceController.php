@@ -99,7 +99,7 @@ class FenceController extends AbstractActionController {
 					}
 				}
 
-				$this->redirect()->toRoute('fence');
+				$this->redirect()->toRoute('fence/edit', ['id' => $lastInsertId]);
 			} else {
 				$error = $fenceForm->getMessages();
 				$fenceForm->populateValues($request->getPost());
@@ -137,6 +137,7 @@ class FenceController extends AbstractActionController {
 			if ($fenceForm->isValid()) {
 				$fenceEntity = new FenceEntity();
 				$fenceEntity->setName($request->getPost('name'));
+				$fenceEntity->setCategoryId($request->getPost('category_id'));
 
 				$mapper = $this->getServiceLocator()->get('FenceMapper');
 				$mapper->update($fenceEntity, ['id' => $id]);

@@ -24,6 +24,7 @@ class Fence extends CommonTableGateway {
 			Select::JOIN_LEFT
 		);
 		$select->where($where);
+		$select->order([$this->getTable() . '.category_id ASC']);
 
 		return $this->hydrate(
 			$this->selectWith($select)

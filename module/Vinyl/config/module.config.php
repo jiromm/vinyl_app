@@ -36,7 +36,7 @@ return array(
 	        'api' => array(
 		        'type' => 'Literal',
 		        'options' => array(
-			        'route' => '/api',
+			        'route' => '/v1/api',
 			        'defaults' => array(
 				        'controller' => 'Vinyl\Controller\Api',
 				        'action'     => 'index',
@@ -45,7 +45,7 @@ return array(
 		        'may_terminate' => true,
 		        'child_routes' => array(
 			        'fence' => array(
-				        'route' => 'Literal',
+				        'type' => 'Literal',
 				        'options' => array(
 					        'route' => '/fence',
 					        'defaults' => array(
@@ -55,7 +55,7 @@ return array(
 				        ),
 			        ),
 			        'house' => array(
-				        'route' => 'Literal',
+				        'type' => 'Literal',
 				        'options' => array(
 					        'route' => '/house',
 					        'defaults' => array(
@@ -65,49 +65,6 @@ return array(
 				        ),
 			        ),
 		        ),
-	        ),
-	        'category' => array(
-		        'type' => 'Literal',
-		        'options' => array(
-			        'route' => '/category',
-			        'defaults' => array(
-				        'controller' => 'Vinyl\Controller\Category',
-				        'action'     => 'index',
-			        ),
-		        ),
-		        'may_terminate' => true,
-		        'child_routes' => array(
-			        'add' => array(
-				        'type' => 'Literal',
-				        'options' => array(
-					        'route' => '/add',
-					        'defaults' => array(
-						        'controller' => 'Vinyl\Controller\Category',
-						        'action'     => 'add',
-					        ),
-				        ),
-			        ),
-			        'edit' => array(
-				        'type' => 'Segment',
-				        'options' => array(
-					        'route' => '/edit/:id',
-					        'defaults' => array(
-						        'controller' => 'Vinyl\Controller\Category',
-						        'action'     => 'edit',
-					        ),
-				        ),
-			        ),
-			        'delete' => array(
-				        'type' => 'Segment',
-				        'options' => array(
-					        'route' => '/delete/:id',
-					        'defaults' => array(
-						        'controller' => 'Vinyl\Controller\Category',
-						        'action'     => 'delete',
-					        ),
-				        ),
-			        ),
-		        )
 	        ),
 	        'fence' => array(
 		        'type' => 'Literal',
@@ -155,7 +112,7 @@ return array(
 	        'house' => array(
 		        'type' => 'Literal',
 		        'options' => array(
-			        'route' => '/category',
+			        'route' => '/house',
 			        'defaults' => array(
 				        'controller' => 'Vinyl\Controller\House',
 				        'action'     => 'index',
@@ -195,10 +152,53 @@ return array(
 			        ),
 		        )
 	        ),
+	        'category' => array(
+		        'type' => 'Literal',
+		        'options' => array(
+			        'route' => '/category',
+			        'defaults' => array(
+				        'controller' => 'Vinyl\Controller\Category',
+				        'action'     => 'index',
+			        ),
+		        ),
+		        'may_terminate' => true,
+		        'child_routes' => array(
+			        'add' => array(
+				        'type' => 'Literal',
+				        'options' => array(
+					        'route' => '/add',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'add',
+					        ),
+				        ),
+			        ),
+			        'edit' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/edit/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'edit',
+					        ),
+				        ),
+			        ),
+			        'delete' => array(
+				        'type' => 'Segment',
+				        'options' => array(
+					        'route' => '/delete/:id',
+					        'defaults' => array(
+						        'controller' => 'Vinyl\Controller\Category',
+						        'action'     => 'delete',
+					        ),
+				        ),
+			        ),
+		        )
+	        ),
 	        'logout' => array(
 		        'type' => 'Segment',
 		        'options' => array(
-			        'route'    => '/logout[/]',
+			        'route'    => '/logout',
 			        'defaults' => array(
 				        'controller' => 'Vinyl\Controller\Auth',
 				        'action'     => 'logout',
@@ -301,9 +301,9 @@ return array(
         'invokables' => array(
             'Vinyl\Controller\Index' => 'Vinyl\Controller\IndexController',
             'Vinyl\Controller\Api' => 'Vinyl\Controller\ApiController',
-            'Vinyl\Controller\Category' => 'Vinyl\Controller\CategoryController',
             'Vinyl\Controller\Fence' => 'Vinyl\Controller\FenceController',
-            'Vinyl\Controller\House' => 'Vinyl\Controller\HouseController',
+	        'Vinyl\Controller\House' => 'Vinyl\Controller\HouseController',
+	        'Vinyl\Controller\Category' => 'Vinyl\Controller\CategoryController',
         ),
 	    'factories' => array(
 		    'Vinyl\Controller\Auth' => 'Vinyl\Controller\AuthControllerFactory',

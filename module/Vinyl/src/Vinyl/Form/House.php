@@ -43,6 +43,15 @@ class House extends Form {
 			),
 		));
 
+		$this->add(array(
+			'name' => 'icon',
+			'type' => 'Zend\Form\Element\File',
+			'attributes' => array(
+				'class' => 'form-control',
+				'accept' => 'image/jpg, image/jpeg',
+			),
+		));
+
 		$this->add([
 			'name' => 'submit',
 			'attributes' => [

@@ -47,10 +47,10 @@ var App = Class({
 		});
 	},
 	loadResources: function(callback) {
-		$.getJSON("api/getHouses.php", function(houses) {
+		$.getJSON("v1/api/house", function(houses) {
 			window.app.houseArchive = houses;
 
-			$.getJSON("api/getFences.php", function(fences) {
+			$.getJSON("v1/api/fence", function(fences) {
 				window.app.fenceArchive = fences;
 
 				callback();
@@ -281,7 +281,7 @@ var App = Class({
 					if (data.status == 'success' && data.code == '0') {
 						window.app.houseUrl = data.url;
 						window.app.activateNext(true);
-						window.app.imgUploadContainer.find('.upload-success-message').html('<p>Yuhuu! We got your photo.<br>Tap on <span class="label label-success">Next</span> to go forward.</p>');
+						window.app.imgUploadContainer.find('.upload-success-message').html('<img src="' + data.url + '">');
 					} else {
 						window.app.imgUploadContainer.find('.upload-error-message').text(data.message);
 					}

@@ -107,3 +107,12 @@ div.dataTables_scroll *:after {
 .widget .widget-additional {
 	font-size: 60%;
 }
+
+.purple {
+	background-color: purple !important;
+	width: 100%;
+}
+.fence-preview {
+	margin: -9px 0 -7px 0;
+	height: 30px;
+}
