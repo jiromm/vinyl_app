@@ -176,7 +176,7 @@ class FenceController extends AbstractActionController {
 						if ($_FILES['icon']['size'] > (1024000)) {
 							$error = 'Oops! Your file\'s size is to large.';
 						} else {
-							if (in_array(strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)), ['png'])) {
+							if (in_array(strtolower(pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION)), ['png'])) {
 								move_uploaded_file($_FILES['icon']['tmp_name'], $newFileName);
 							} else {
 								$error = 'Ooops! PNG please.';
