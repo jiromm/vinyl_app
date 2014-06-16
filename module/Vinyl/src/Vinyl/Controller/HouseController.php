@@ -53,7 +53,7 @@ class HouseController extends AbstractActionController {
 				$dir = './public/upload/house/' . $lastInsertId;
 
 				if (!is_dir($dir)) {
-					if (!mkdir($dir, 777, true)) {
+					if (!mkdir($dir, 0755, true)) {
 						throw new \Exception('Cannot create directory: ' . $dir);
 					}
 				}

@@ -281,7 +281,7 @@ var App = Class({
 					if (data.status == 'success' && data.code == '0') {
 						window.app.houseUrl = data.url;
 						window.app.activateNext(true);
-						window.app.imgUploadContainer.find('.upload-success-message').html('<img src="' + data.url + '">');
+						window.app.imgUploadContainer.find('.upload-success-message').html('<img src="' + data.url + '" class="export-bg">');
 					} else {
 						window.app.imgUploadContainer.find('.upload-error-message').text(data.message);
 					}

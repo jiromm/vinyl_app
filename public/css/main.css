@@ -179,7 +179,7 @@ a, button {
 	cursor: pointer;
 }
 .fences .swiper-slide.active {
-	background-color: #eee;
+	background-color: #e7e7e7;
 }
 .or {
 	position: relative;
@@ -216,7 +216,7 @@ a, button {
 .page,
 .social,
 .fence-tools {
-	max-width: 700px;
+	max-width: 768px;
 	margin: 0 auto;
 }
 
