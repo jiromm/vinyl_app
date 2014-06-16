@@ -398,16 +398,11 @@ var App = Class({
 
 		switch (this.step) {
 			case 1:
-
-
 				break;
 			case 2:
 				this.saveCoverImgDetails();
-
 				break;
 			case 3:
-
-
 				break;
 		}
 
