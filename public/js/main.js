@@ -28,6 +28,7 @@ var App = Class({
 		this.fenceEdit = $('.fence-edit');
 		this.fenceZoomer = $(".fence-zoomer");
 		this.pager = $('.pager');
+		this.saveImage = $('.save-image');
 
 		this.imgUploadContainer = $("#upload-photo");
 		this.houses = $("#choose-houses");
@@ -166,6 +167,26 @@ var App = Class({
 			if (!btn.prop('disabled')) {
 				window.app.setStep(parseInt(btn.attr('data-step')));
 			}
+		});
+
+		// Twitter click
+		$('.social-twitter').click(function(e) {
+			e.preventDefault();
+
+			var width = 575,
+				height = 400,
+				left   = ($(window).width()  - width)  / 2,
+				top    = ($(window).height() - height) / 2,
+				url    = this.href,
+				opts   = 'status=1' +
+					',width='  + width  +
+					',height=' + height +
+					',top='    + top    +
+					',left='   + left;
+
+			window.open(url, 'twitter', opts);
+
+			return false;
 		});
 
 		// Choose House
@@ -439,6 +460,7 @@ var App = Class({
 			}
 		}).done(function(data) {
 			$('.export-bg').attr('src', data.url);
+			window.app.saveImage.attr('href', data.url);
 		});
 	},
 	saveCoverImgDetails: function() {

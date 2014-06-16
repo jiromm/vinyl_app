@@ -226,3 +226,6 @@ input:invalid {
 input:valid{
 	background: transparent;
 }
+.save-image {
+	margin-bottom: 15px;
+}
