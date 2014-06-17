@@ -398,6 +398,8 @@ var App = Class({
 
 		switch (this.step) {
 			case 1:
+				$('.img-base').attr('src', '');
+				$('.export-bg').attr('src', '');
 				break;
 			case 2:
 				this.saveCoverImgDetails();

@@ -22,9 +22,11 @@ if (count($_POST)) {
 	$destinationDirectory = '../archive/processed/';
 	$imgUrl = HOST . BASE_DIR . 'archive/processed/';
 
+	$watermark = WideImage::load('../img/logo-small.png');
 	$base = WideImage::load($baseUrl);
 	$over = WideImage::load($overUrl)->resize($overWidth, $overHeight);
 	$new = $base->merge($over, $left, $top, 100);
+	$new = $new->merge($watermark, 'right', 'bottom', 100);
 	$name = mt_rand(1000000000, 9999999999) . '.jpg';
 	$new->saveToFile($destinationDirectory . $name, 95);
 
