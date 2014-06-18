@@ -79,9 +79,16 @@ var App = Class({
 		fenceSwipeElement.css('width', $(document).width());
 
 		this.fenceCategoriesSwiper = catSwipeElement.swiper({
-			freeMode: true,
-			freeModeFluid: true,
-			slidesPerView: 3
+//			freeMode: true,
+//			freeModeFluid: true,
+			slidesPerView: 1,
+			slideActiveClass: 'sp-active',
+			onSlideNext: function(swiper) {
+				window.app.activateCategory(swiper.activeIndex);
+			},
+			onSlidePrev: function(swiper) {
+				window.app.activateCategory(swiper.activeIndex);
+			}
 		});
 
 		this.fencesSwiper = fenceSwipeElement.swiper({
@@ -98,6 +105,9 @@ var App = Class({
 				'max': 1.4
 			}
 		});
+	},
+	activateCategory: function(index) {
+		$('.fence-categories a').eq(index).trigger('click');
 	},
 	bindEvents: function() {
 		var body = $('body');
@@ -356,6 +366,16 @@ var App = Class({
 				});
 			});
 		});
+
+		$('.arrow-cat-left').on('click', function(e) {
+			e.preventDefault()
+			window.app.fenceCategoriesSwiper.swipePrev();
+		});
+
+		$('.arrow-cat-right').on('click', function(e) {
+			e.preventDefault()
+			window.app.fenceCategoriesSwiper.swipeNext();
+		});
 	},
 	uploadButtonFreeze: function() {
 		this.imgUploadContainer.find('.upload-text').hide();
@@ -398,8 +418,6 @@ var App = Class({
 
 		switch (this.step) {
 			case 1:
-				$('.img-base').attr('src', '');
-				$('.export-bg').attr('src', '');
 				break;
 			case 2:
 				this.saveCoverImgDetails();
@@ -420,22 +438,32 @@ var App = Class({
 
 		switch (this.step) {
 			case 1:
+				$('.img-base').attr('src', '');
+				$('.export-bg').attr('src', '');
+				$('.hint').show();
+				$('.arrow-cat').hide();
 				this.initChooseHouse();
 
 				break;
 			case 2:
 				this.initChooseFence();
 				this.pager.find('.pull-right').html('Finish');
+				$('.hint').show();
+				$('.arrow-cat').show('fast');
 
 				break;
 			case 3:
 				this.initExport();
 				this.hideFooter();
+				$('.hint').hide();
+				$('.arrow-cat').hide();
 
 				break;
 			case 4:
 				this.hideFooter();
 				this.hideHeader();
+				$('.hint').hide();
+				$('.arrow-cat').hide();
 
 				break;
 		}
@@ -539,11 +567,13 @@ var App = Class({
 			this.fenceTools.show();
 			this.fenceChoice.hide();
 			this.fenceEdit.text('Return');
+			$('.arrow-cat').hide();
 		} else {
 			this.isEdited = false;
 			this.fenceTools.hide();
 			this.fenceChoice.show();
 			this.fenceEdit.text('Edit');
+			$('.arrow-cat').show('fast');
 		}
 	},
 	initChooseFence: function() {
