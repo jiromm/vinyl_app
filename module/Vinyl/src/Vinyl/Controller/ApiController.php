@@ -27,9 +27,10 @@ class ApiController extends AbstractActionController {
 			foreach ($result as $item) {
 				if (!isset($output[$item->getCategoryId()])) {
 					$output[$item->getCategoryId()] = [
-						'name' => $item->getName(),
+						'name' => $item->getCategory(),
 						'icon' => [],
 						'original' => [],
+						'order' => $item->getCategoryOrder(),
 					];
 				}
 
@@ -43,7 +44,7 @@ class ApiController extends AbstractActionController {
 					'height' => $height,
 				];
 			}
-		}
+		} asort($output, SORT_ASC);
 
 		die(json_encode($output));
 	}

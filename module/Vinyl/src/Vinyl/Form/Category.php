@@ -35,6 +35,17 @@ class Category extends Form {
 		]);
 
 		$this->add([
+			'name' => 'order',
+			'attributes' => [
+				'type' => 'number',
+				'class' => 'form-control',
+				'id' => 'order',
+				'required' => 'required',
+				'value' => 1,
+			],
+		]);
+
+		$this->add([
 			'name' => 'submit',
 			'attributes' => [
 				'type' => 'submit',

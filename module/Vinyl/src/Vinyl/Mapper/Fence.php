@@ -20,11 +20,14 @@ class Fence extends CommonTableGateway {
 		$select->join(
 			['cat' => DBTable::CATEGORY],
 			'cat.id = ' . $this->getTable() . '.category_id',
-			['category' => 'name'],
+			[
+				'category' => 'name',
+				'category_order' => 'order',
+			],
 			Select::JOIN_LEFT
 		);
 		$select->where($where);
-		$select->order([$this->getTable() . '.category_id ASC']);
+		$select->order(['cat.order DESC']);
 
 		return $this->hydrate(
 			$this->selectWith($select)

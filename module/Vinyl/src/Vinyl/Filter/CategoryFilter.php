@@ -10,5 +10,10 @@ class CategoryFilter extends InputFilter {
 			'name' => 'name',
 			'required' => true,
 		]);
+
+		$this->add([
+			'name' => 'order',
+			'required' => true,
+		]);
 	}
 }

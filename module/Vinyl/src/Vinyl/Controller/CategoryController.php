@@ -40,6 +40,7 @@ class CategoryController extends AbstractActionController {
 			if ($categoryForm->isValid()) {
 				$categoryEntity = new CategoryEntity();
 				$categoryEntity->setName($request->getPost('name'));
+				$categoryEntity->setOrder($request->getPost('order'));
 
 				$mapper = $this->getServiceLocator()->get('CategoryMapper');
 				$mapper->insert($categoryEntity);
@@ -74,6 +75,7 @@ class CategoryController extends AbstractActionController {
 			if ($categoryForm->isValid()) {
 				$categoryEntity = new CategoryEntity();
 				$categoryEntity->setName($request->getPost('name'));
+				$categoryEntity->setOrder($request->getPost('order'));
 
 				$mapper = $this->getServiceLocator()->get('CategoryMapper');
 				$mapper->update($categoryEntity, ['id' => $id]);

@@ -8,6 +8,7 @@ class Fence extends EntityBase {
 	protected $id;
 	protected $category_id;
 	protected $category;
+	protected $category_order;
 	protected $name;
 
 	public function setId($id) {
@@ -28,6 +29,10 @@ class Fence extends EntityBase {
 
 	public function getCategory() {
 		return $this->category;
+	}
+
+	public function getCategoryOrder() {
+		return $this->category_order;
 	}
 
 	public function setName($name) {

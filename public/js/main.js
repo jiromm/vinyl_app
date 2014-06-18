@@ -51,7 +51,7 @@ var App = Class({
 		$.getJSON("v1/api/house", function(houses) {
 			window.app.houseArchive = houses;
 
-			$.getJSON("v1/api/fence", function(fences) {
+			$.getJSON("v1/api/fence", function(fences) { console.log(fences);
 				window.app.fenceArchive = fences;
 
 				callback();
@@ -79,8 +79,6 @@ var App = Class({
 		fenceSwipeElement.css('width', $(document).width());
 
 		this.fenceCategoriesSwiper = catSwipeElement.swiper({
-//			freeMode: true,
-//			freeModeFluid: true,
 			slidesPerView: 1,
 			slideActiveClass: 'sp-active',
 			onSlideNext: function(swiper) {
