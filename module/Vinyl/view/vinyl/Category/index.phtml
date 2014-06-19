@@ -12,6 +12,7 @@
 			<tr>
 				<th width="1">id</th>
 				<th>Name</th>
+				<th width="15%">Order</th>
 				<th width="15%">Functions</th>
 			</tr>
 		</thead>
@@ -24,6 +25,7 @@
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
 				<td><?php echo $row->getName(); ?></td>
+				<td><?php echo $row->getOrder(); ?></td>
 				<td>
 					<a href="<?php echo $this->url('category/edit', ['id' => $row->getId()]); ?>" class="label label-success">Edit</a>
 					<span class="text-muted">/</span>
@@ -36,6 +38,7 @@
 		?>
 			<tr>
 				<td>No Data</td>
+				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 			</tr>

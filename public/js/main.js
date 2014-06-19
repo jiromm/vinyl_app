@@ -27,6 +27,7 @@ var App = Class({
 		this.fenceTools = $('.fence-tools');
 		this.fenceEdit = $('.fence-edit');
 		this.fenceZoomer = $(".fence-zoomer");
+		this.fenceCropper = $(".fence-cropper");
 		this.pager = $('.pager');
 		this.saveImage = $('.save-image');
 
@@ -37,7 +38,7 @@ var App = Class({
 	initialize: function() {
 		this.loadResources(function() {
 			window.app.defineVariables();
-			window.app.initOrientationDetector();
+//			window.app.initOrientationDetector();
 			window.app.setStep(1);
 			window.app.bindEvents();
 			window.app.activateNext(false);
@@ -101,6 +102,15 @@ var App = Class({
 			range: {
 				'min': .4,
 				'max': 1.4
+			}
+		});
+
+		this.fenceCropper.noUiSlider({
+			start: [0, 100],
+			behaviour: 'slide',
+			range: {
+				'min': 0,
+				'max': 100
 			}
 		});
 	},
@@ -290,6 +300,24 @@ var App = Class({
 			window.app.fence.lastHeight = currentHeight;
 		});
 
+		// Crop fence
+		this.fenceCropper.on('slide', function(e) {
+			e.preventDefault(); console.log($(this).val());
+
+			var coeff = $(this).val(),
+				coeffLeft = coeff[0],
+				coeffRight = coeff[1],
+				currentLeft = window.app.fence.width * coeffLeft / 100,
+				currentRight = window.app.fence.width * coeffRight / 100;
+
+			$('.fence-draggable').css({
+				clip: 'rect(0px ' + currentRight + 'px 1000px ' + currentLeft + 'px)'
+			});
+
+			window.app.fence.lastLeft = currentLeft;
+			window.app.fence.lastRight = currentRight;
+		});
+
 		// Image Upload
 		this.imgUploadContainer.find('.house-img-form').on('change', function(e) {
 			e.preventDefault();
@@ -365,15 +393,27 @@ var App = Class({
 			});
 		});
 
+		// Category Arrow click Next
 		$('.arrow-cat-left').on('click', function(e) {
 			e.preventDefault()
 			window.app.fenceCategoriesSwiper.swipePrev();
 		});
 
+		// Category Arrow click Prev
 		$('.arrow-cat-right').on('click', function(e) {
 			e.preventDefault()
 			window.app.fenceCategoriesSwiper.swipeNext();
 		});
+
+//		var previousOrientation = window.orientation;
+//		var checkOrientation = function() {
+//			if (window.orientation !== previousOrientation) {
+//				previousOrientation = window.orientation;
+//			}
+//		};
+//
+//		window.addEventListener("resize", checkOrientation, false);
+//		window.addEventListener("orientationchange", checkOrientation, false);
 	},
 	uploadButtonFreeze: function() {
 		this.imgUploadContainer.find('.upload-text').hide();

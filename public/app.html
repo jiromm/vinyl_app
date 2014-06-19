@@ -129,11 +129,19 @@
 			</div>
 
 			<div class="fence-tools">
-				<i class="glyphicon glyphicon-zoom-out controls pull-left"></i>
-				<div class="fence-zoomer-container">
-					<div class="fence-zoomer"></div>
+				<div class="cropper">
+					<div class="fence-cropper-container">
+						<div class="fence-cropper"></div>
+					</div>
 				</div>
-				<i class="glyphicon glyphicon-zoom-in controls pull-right"></i>
+
+				<div class="zoomer">
+					<i class="glyphicon glyphicon-zoom-out controls pull-left"></i>
+					<div class="fence-zoomer-container">
+						<div class="fence-zoomer"></div>
+					</div>
+					<i class="glyphicon glyphicon-zoom-in controls pull-right"></i>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -199,7 +207,9 @@
 	<div class="stick stick-foot">
 		<ul class="null pager">
 			<li class="previous"><button class="btn btn-default pull-left">&larr; Back</button></li>
-			<li><a href="#" class="text-center fence-edit soft-hide">Edit</a></li>
+			<li>
+				<a href="#" class="text-center fence-edit soft-hide">Edit</a>
+			</li>
 			<li class="next"><button class="btn btn-default pull-right">Next &rarr;</button></li>
 		</ul>
 	</div>
