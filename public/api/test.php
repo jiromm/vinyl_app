@@ -11,12 +11,12 @@ list($curWidth, $curHeight) = getimagesize($imgSrc);
 
 $image = WideImage::load($imgSrc);
 
-if ($curWidth / $curHeight > 5 / 3) {
-	$image = $image->resize(500, 300, 'inside', 'down');
-} else {
-	$image = $image->resize(500, 300, 'outside', 'down');
-}
+//if ($curWidth / $curHeight > 5 / 3) {
+//	$image = $image->resize(500, 300, 'inside', 'down');
+//} else {
+//	$image = $image->resize(500, 300, 'outside', 'down');
+//}
 
 
 
-$image->crop('center', 'center', 500, 300)->output('jpg', 90);
+$image->crop(20, 'top', 500, 300)->output('jpg', 90);

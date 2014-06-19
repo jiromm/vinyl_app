@@ -536,7 +536,9 @@ var App = Class({
 			overWidth: 500 * imgOver.width() / imgBase.width(),
 			overHeight: 300 * imgOver.height() / imgBase.height(),
 			baseWidth: 500,
-			baseHeight: 300
+			baseHeight: 300,
+			cropLeft: this.fence.lastLeft * 1500 / imgOver.width(),
+			cropRight: this.fence.lastRight * 1500 / imgOver.width()
 		}
 	},
 	getCoverImgDetails: function() {
