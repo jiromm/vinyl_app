@@ -112,6 +112,9 @@ div.dataTables_scroll *:after {
 	background-color: purple !important;
 	width: 100%;
 }
+.orange {
+	background-color: orange !important;
+}
 .fence-preview {
 	margin: -9px 0 -7px 0;
 	height: 30px;

@@ -106,7 +106,7 @@ a, button {
 .fence-categories,
 .fence-tools {
 	position: fixed;
-	bottom: 67px;
+	bottom: 119px;
 	z-index: 8;
 	border-top: 1px solid #ddd;
 	width: 100%;
@@ -176,7 +176,7 @@ a, button {
 
 .fences {
 	position: fixed;
-	bottom: 100px;
+	bottom: 67px;
 	z-index: 9;
 	left: 0;
 	border-top: 1px solid #ddd;
@@ -246,8 +246,8 @@ a, button {
 
 
 .arrow-cat {
-	position: absolute;
-	bottom: 68px;
+	position: fixed;
+	bottom: 119px;
 	width: 42px;
 	height: 30px;
 	z-index: 1000;

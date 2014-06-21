@@ -52,7 +52,7 @@ var App = Class({
 		$.getJSON("v1/api/house", function(houses) {
 			window.app.houseArchive = houses;
 
-			$.getJSON("v1/api/fence", function(fences) { console.log(fences);
+			$.getJSON("v1/api/fence", function(fences) {
 				window.app.fenceArchive = fences;
 
 				callback();
@@ -302,7 +302,7 @@ var App = Class({
 
 		// Crop fence
 		this.fenceCropper.on('slide', function(e) {
-			e.preventDefault(); console.log($(this).val());
+			e.preventDefault();
 
 			var coeff = $(this).val(),
 				coeffLeft = coeff[0],
@@ -546,6 +546,7 @@ var App = Class({
 	},
 	initDrawFence: function(categoryId, fenceId) {
 		this.fenceZoomer.val(1);
+		this.fenceCropper.val([20, 80]);
 
 		var selectedFence = this.fenceArchive[categoryId].fences[fenceId],
 			widthCoeff = this.imgBase.width() / 700,
@@ -559,6 +560,8 @@ var App = Class({
 			lastWidth: totalWidth,
 			lastHeight: totalHeight
 		};
+
+		this.fenceCropper.trigger('slide');
 
 		this.houseContainer.find('.fence-covered').attr('src', selectedFence.original).animate({
 			width: totalWidth,
@@ -721,15 +724,15 @@ var App = Class({
 		this.locker.addClass('hidden');
 	},
 	initOrientationDetector: function() {
-//		setInterval(function() {
-//			window.app.detectOrientationChange();
-//
-//			if (window.app.orientation == 'landscape') {
-//				window.app.screenLock('Please change orientation to portrait view.')
-//			} else {
-//				window.app.screenUnlock();
-//			}
-//		}, 500);
+		setInterval(function() {
+			window.app.detectOrientationChange();
+
+			if (window.app.orientation == 'landscape') {
+				window.app.screenLock('Please change orientation to portrait view.')
+			} else {
+				window.app.screenUnlock();
+			}
+		}, 500);
 	},
 	detectOrientationChange: function() {
 		if ($(window).width() > $(window).height()) {

@@ -25,7 +25,7 @@
 		?>
 			<tr>
 				<td><?php echo $row->getId(); ?></td>
-				<td><img src="<?php echo HOST . 'upload/fence/' . $row->getId() . '/icon.png'; ?>" class="fence-preview"></td>
+				<td><img src="<?php echo HOST . 'upload/fence/' . $row->getId() . '/icon.png'; ?>?sh<?php echo mt_rand(1000000, 9999999); ?>" class="fence-preview orange"></td>
 				<td><?php echo $row->getName(); ?></td>
 				<td><?php echo $row->getCategory(); ?></td>
 				<td>
