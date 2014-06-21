@@ -106,7 +106,7 @@ a, button {
 .fence-categories,
 .fence-tools {
 	position: fixed;
-	bottom: 119px;
+	bottom: 118px;
 	z-index: 8;
 	border-top: 1px solid #ddd;
 	width: 100%;
@@ -174,7 +174,8 @@ a, button {
 	color: #d43f3a !important;
 }
 
-.fences {
+.fences,
+.fence-tools {
 	position: fixed;
 	bottom: 67px;
 	z-index: 9;
@@ -182,7 +183,6 @@ a, button {
 	border-top: 1px solid #ddd;
 	width: 100%;
 	background-color: #fff;
-	box-shadow: inset 0 -2px 5px #eee;
 }
 .fences .swiper-container,
 .fences .swiper-slide {
@@ -247,7 +247,7 @@ a, button {
 
 .arrow-cat {
 	position: fixed;
-	bottom: 119px;
+	bottom: 118px;
 	width: 42px;
 	height: 30px;
 	z-index: 1000;
