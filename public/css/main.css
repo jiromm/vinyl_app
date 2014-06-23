@@ -142,7 +142,7 @@ a, button {
 	position: relative;
 }
 .fence-tools .cropper {
-	margin-bottom: 25px;
+	margin-bottom: 35px;
 }
 .fence-zoomer-container,
 .fence-cropper-container {
@@ -155,13 +155,12 @@ a, button {
 	margin: 5px 10px;
 	font-size: 200%;
 	color: #ccc;
-	top: -30px;
 }
 .fence-tools .controls:first-child {
-	left: -10px;
+	left: 2px;
 }
 .fence-tools .controls:last-child {
-	right: -10px;
+	right: 2px;
 }
 .fence-edit {
 	background-color: #fff;
@@ -193,13 +192,15 @@ a, button {
 	margin: 5px;
 }
 .fences .swiper-slide {
+	background-color: #dfe0e7;
 	text-align: center;
 }
 .fences .swiper-slide:hover {
 	cursor: pointer;
 }
 .fences .swiper-slide.active {
-	background-color: #e7e7e7;
+	background-color: #B4B5BB;
+	box-shadow: inset 0 0 0 2px rgba(51, 159, 255, 0.20);
 }
 .or {
 	position: relative;
@@ -239,6 +240,9 @@ a, button {
 	max-width: 768px;
 	margin: 0 auto;
 }
+.fence-tools {
+	padding: 18px 0;
+}
 
 .save-image {
 	margin-bottom: 15px;
@@ -263,4 +267,25 @@ a, button {
 .arrow-cat-right {
 	right: 0;
 	background: url(../img/arrows-cat.png) top right no-repeat;
+}
+
+.icon {
+	width: 16px;
+	height: 16px;
+	opacity: .3;
+}
+.icon-zoom-out {
+	background: url(../img/arrows-tools.png) top left no-repeat;
+}
+.icon-zoom-in {
+	background: url(../img/arrows-tools.png) top right no-repeat;
+}
+.icon-crop-left {
+	background: url(../img/arrows-tools.png) bottom left no-repeat;
+}
+.icon-crop-right {
+	background: url(../img/arrows-tools.png) bottom right no-repeat;
+}
+.controls {
+	top: -10px;
 }
