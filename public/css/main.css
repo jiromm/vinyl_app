@@ -78,6 +78,9 @@ a, button {
 .pager button {
 	border-radius: 15px;
 }
+.pager li>a, .pager li>span {
+	padding: 7px 14px;
+}
 .page4 {
 	margin-top: -40px !important;
 }
