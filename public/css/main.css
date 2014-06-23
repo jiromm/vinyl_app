@@ -7,6 +7,9 @@ a, button {
 .container {
 	padding-left: 0;
 	padding-right: 0;
+	max-width: 768px;
+	position: relative;
+	margin: 0 auto;
 }
 .locker {
 	position: fixed;
