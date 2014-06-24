@@ -72,6 +72,15 @@ var App = Class({
 			urls: urlList
 		});
 	},
+	disableCategoryArrowsIfNeeded: function() {
+		$('.arrow-cat').show();
+
+		if (this.fenceCategoriesSwiper.activeIndex == 0) {
+			$('.arrow-cat-left').hide();
+		} else if (this.fenceCategoriesSwiper.previousIndex == this.fenceCategoriesSwiper.activeIndex) {
+			$('.arrow-cat-right').hide();
+		}
+	},
 	initPlugins: function() {
 		var catSwipeElement = $('.fence-categories .swiper-container'),
 			fenceSwipeElement = $('.fences .swiper-container');
@@ -84,9 +93,11 @@ var App = Class({
 			slideActiveClass: 'sp-active',
 			onSlideNext: function(swiper) {
 				window.app.activateCategory(swiper.activeIndex);
+				window.app.disableCategoryArrowsIfNeeded();
 			},
 			onSlidePrev: function(swiper) {
 				window.app.activateCategory(swiper.activeIndex);
+				window.app.disableCategoryArrowsIfNeeded();
 			}
 		});
 
@@ -404,16 +415,6 @@ var App = Class({
 			e.preventDefault()
 			window.app.fenceCategoriesSwiper.swipeNext();
 		});
-
-//		var previousOrientation = window.orientation;
-//		var checkOrientation = function() {
-//			if (window.orientation !== previousOrientation) {
-//				previousOrientation = window.orientation;
-//			}
-//		};
-//
-//		window.addEventListener("resize", checkOrientation, false);
-//		window.addEventListener("orientationchange", checkOrientation, false);
 	},
 	uploadButtonFreeze: function() {
 		this.imgUploadContainer.find('.upload-text').hide();
@@ -487,7 +488,7 @@ var App = Class({
 				this.initChooseFence();
 				this.pager.find('.pull-right').html('Finish');
 				$('.hint').show();
-				$('.arrow-cat').show('fast');
+				$('.arrow-cat').show();
 
 				break;
 			case 3:
@@ -616,7 +617,7 @@ var App = Class({
 			this.fenceTools.hide();
 			this.fenceChoice.show();
 			this.fenceEdit.text('Edit');
-			$('.arrow-cat').show('fast');
+			$('.arrow-cat').show();
 		}
 	},
 	initChooseFence: function() {
@@ -638,6 +639,10 @@ var App = Class({
 				throw new DOMException('Archive was empty in fence layer.');
 			}
 		}
+
+		setTimeout(function() {
+			window.app.disableCategoryArrowsIfNeeded();
+		}, 1);
 
 		this.imgBase.load(function() {
 			window.app.getCategories().eq(0).trigger('click');
