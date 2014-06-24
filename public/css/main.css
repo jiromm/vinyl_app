@@ -12,11 +12,11 @@ a, button {
 	margin: 0 auto;
 }
 .locker {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1000;
-	background-color: rgba(0,0,0,.8);
+	z-index: 1001;
+	background-color: rgba(0,0,0,.9);
 	text-align: center;
 }
 .locker .message {
@@ -237,6 +237,9 @@ a, button {
 }
 .export-bg {
 	width: 100%;
+}
+.top-margin {
+	margin-top: 35px;
 }
 
 .stick,

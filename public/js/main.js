@@ -38,7 +38,7 @@ var App = Class({
 	initialize: function() {
 		this.loadResources(function() {
 			window.app.defineVariables();
-//			window.app.initOrientationDetector();
+			window.app.initOrientationDetector();
 			window.app.setStep(1);
 			window.app.bindEvents();
 			window.app.activateNext(false);
@@ -707,7 +707,7 @@ var App = Class({
 		}
 	},
 	returnToHome: function() {
-		window.location.href = 'index.html';
+		window.location.href = 'app.html';
 	},
 	screenLock: function(message) {
 		var docWidth = $(document).width(),
@@ -727,7 +727,7 @@ var App = Class({
 		setInterval(function() {
 			window.app.detectOrientationChange();
 
-			if (window.app.orientation == 'landscape') {
+			if ($(window).width() < 768 && (window.app.step == 1 && !$('#upload-photo').is(':visible')) && window.app.orientation == 'landscape') {
 				window.app.screenLock('Please change orientation to portrait view.')
 			} else {
 				window.app.screenUnlock();
