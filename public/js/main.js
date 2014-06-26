@@ -77,7 +77,7 @@ var App = Class({
 
 		if (this.fenceCategoriesSwiper.activeIndex == 0) {
 			$('.arrow-cat-left').hide();
-		} else if (this.fenceCategoriesSwiper.previousIndex == this.fenceCategoriesSwiper.activeIndex) {
+		} else if (this.fenceCategoriesSwiper.activeIndex == this.fenceCategoriesSwiper.slides.length - 1) {
 			$('.arrow-cat-right').hide();
 		}
 	},
@@ -488,7 +488,6 @@ var App = Class({
 				this.initChooseFence();
 				this.pager.find('.pull-right').html('Finish');
 				$('.hint').show();
-				$('.arrow-cat').show();
 
 				break;
 			case 3:
@@ -642,7 +641,7 @@ var App = Class({
 
 		setTimeout(function() {
 			window.app.disableCategoryArrowsIfNeeded();
-		}, 1);
+		}, 10);
 
 		this.imgBase.load(function() {
 			window.app.getCategories().eq(0).trigger('click');

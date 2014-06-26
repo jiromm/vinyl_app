@@ -13,7 +13,7 @@ class AuthController extends AbstractActionController {
 
 	public function loginAction() {
 		if ($this->authService->hasIdentity()) {
-			return $this->redirect()->toUrl('/');
+			return $this->redirect()->toUrl('/login');
 		}
 
 		if (!$this->loginForm) {
@@ -41,7 +41,7 @@ class AuthController extends AbstractActionController {
 						'loginError' => true,
 					]);
 				} else {
-					return $this->redirect()->toUrl('/');
+					return $this->redirect()->toUrl('/login');
 				}
 			}
 		}
@@ -56,7 +56,7 @@ class AuthController extends AbstractActionController {
 			$this->authService->clearIdentity();
 		}
 
-		return $this->redirect()->toUrl('/');
+		return $this->redirect()->toUrl('/login');
 	}
 
 	public function setLoginForm($loginForm) {

@@ -30,7 +30,7 @@ class Module {
 		    $routeMatch = $e->getRouteMatch();
 		    $routeMatch->getMatchedRouteName();
 
-		    if (!$authService->hasIdentity() && $routeMatch->getMatchedRouteName() != 'login') {
+		    if (!$authService->hasIdentity() && !in_array($routeMatch->getMatchedRouteName(), ['login', 'home'])) {
 			    $controller->plugin('redirect')->toRoute('login');
 		    }
 	    }, 100);

@@ -10,6 +10,7 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController {
     public function indexAction() {
+	    $this->layout()->setTemplate('layout/index');
         return new ViewModel();
     }
 }
