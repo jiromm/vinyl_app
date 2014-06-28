@@ -174,8 +174,9 @@
 
 	<div class="row page page4 soft-hide">
 		<div class="col-sm-12">
-			<form action="api/submitAppointment.php" method="post" role="form">
-				<p class="text-primary">Dzer yntrac nkary kkcvi ays formayin u submit klini mez. Karch jamanakva yntacqum dzez het kkapnven mer ashxatakicnery...</p>
+			<form action="api/submitAppointment.php" method="post" role="form" id="appointment-form">
+				<h3 class="text-primary null">Submit an Appointment</h3>
+				<hr>
 				<div class="form-group">
 					<label for="name">Name</label>
 					<input type="text" class="form-control" id="name" placeholder="John Smith" required>
@@ -192,7 +193,7 @@
 					<label for="remarks">Remarks <span class="text-muted">(optional)</span></label>
 					<textarea class="form-control" id="remarks" placeholder="How we can help?"></textarea>
 				</div>
-				<button type="submit" class="btn btn-block btn-primary appointment-form-submit">Submit</button>
+				<a class="btn btn-block btn-primary appointment-form-submit" data-loading-text="Processing...">Submit</a>
 			</form>
 
 			<div class="alert alert-success soft-hide">

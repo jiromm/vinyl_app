@@ -378,31 +378,53 @@ var App = Class({
 				url = form.attr('action'),
 				image = $('.export-bg').attr('src');
 
-			$.ajax({
-				type: 'POST',
-				url: url,
-				dataType: "json",
-				data: {
-					image: image,
-					name: $('#name').val(),
-					phone: $('#phone').val(),
-					email: $('#email').val(),
-					remarks: $('#remarks').val()
+			form.find('input').each(function() {
+				if ($(this).val() == '') {
+					$(this).closest('.form-group').removeClass('has-success').addClass('has-error');
+				} else {
+					$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
 				}
-			}).done(function(data) {
-				form.fadeOut('fast', function() {
-					if (data.status == 'success') {
-						parent.find('.alert-success').fadeIn('fast');
-					} else {
-						parent.find('.alert-success').fadeIn('fast');
-					}
-				});
-			}).fail(function() {
-				form.fadeOut('fast', function() {
-					parent.find('.alert-success').fadeIn('fast');
-				});
 			});
+
+			if (!form.find('.has-error').length) {
+				$(this).button('loading');
+
+				$.ajax({
+					type: 'POST',
+					url: url,
+					dataType: "json",
+					data: {
+						image: image,
+						name: $('#name').val(),
+						phone: $('#phone').val(),
+						email: $('#email').val(),
+						remarks: $('#remarks').val()
+					}
+				}).done(function(data) {
+					form.fadeOut('fast', function() {
+						if (data.status == 'success') {
+							parent.find('.alert-success').fadeIn('fast');
+						} else {
+							$(this).button('reset');
+							parent.find('.alert-success').fadeIn('fast');
+						}
+					});
+				}).fail(function() {
+					$(this).button('reset');
+					form.fadeOut('fast', function() {
+						parent.find('.alert-success').fadeIn('fast');
+					});
+				});
+			}
 		});
+
+//		$('#appointment-form').find('input').on('change', function() {
+//			if (!$(this).is(':valid')) {
+//				$(this).closest('.form-group').removeAttr('has-success').addClass('has-error');
+//			} else {
+//				$(this).closest('.form-group').removeAttr('has-error').addClass('has-success');
+//			}
+//		});
 
 		// Category Arrow click Next
 		$('.arrow-cat-left').on('click', function(e) {
