@@ -418,14 +418,6 @@ var App = Class({
 			}
 		});
 
-//		$('#appointment-form').find('input').on('change', function() {
-//			if (!$(this).is(':valid')) {
-//				$(this).closest('.form-group').removeAttr('has-success').addClass('has-error');
-//			} else {
-//				$(this).closest('.form-group').removeAttr('has-error').addClass('has-success');
-//			}
-//		});
-
 		// Category Arrow click Next
 		$('.arrow-cat-left').on('click', function(e) {
 			e.preventDefault()
