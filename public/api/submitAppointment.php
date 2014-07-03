@@ -36,12 +36,12 @@ if (count($_POST)) {
 
 	$mail->From = 'info@frontgatevinyl.com';
 	$mail->FromName = 'Info';
-	$mail->addAddress('xquack@gmail.com');
+	$mail->addAddress('xxx@xxx.xxx');
 
 	$mail->WordWrap = 50;
 	$mail->isHTML(true);
 
-	$mail->Subject = 'Appointment from App';
+	$mail->Subject = 'Appointment from Vinyl Fencing App';
 	$mail->Body    = $message;
 	$mail->AltBody = strip_tags($message) . PHP_EOL . 'Image URL: ' . $image;
 

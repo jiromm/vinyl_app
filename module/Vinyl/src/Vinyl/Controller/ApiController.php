@@ -9,7 +9,7 @@ use Vinyl\Entity\House as HouseEntity;
 
 class ApiController extends AbstractActionController {
     public function indexAction() {
-	    die(json_encode(['fuck off']));
+	    die(json_encode(['blo blo']));
     }
 
 	public function fenceAction() {
@@ -44,7 +44,7 @@ class ApiController extends AbstractActionController {
 					'height' => $height,
 				];
 			}
-		} asort($output, SORT_ASC);
+		}
 
 		die(json_encode($output));
 	}
