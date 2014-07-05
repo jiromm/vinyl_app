@@ -403,7 +403,7 @@ var App = Class({
 				}).done(function(data) {
 					form.fadeOut('fast', function() {
 						if (data.status == 'success') {
-							parent.find('.alert-success').fadeIn('fast');
+							window.location.href = 'http://frontgatevinyl.com/thankyou.html';
 						} else {
 							$(this).button('reset');
 							parent.find('.alert-success').fadeIn('fast');
@@ -745,7 +745,7 @@ var App = Class({
 		setInterval(function() {
 			window.app.detectOrientationChange();
 
-			if ($(window).width() < 768 && (window.app.step == 1 && !$('#upload-photo').is(':visible')) && window.app.orientation == 'landscape') {
+			if ($(window).width() < 768 && (window.app.step != 1 || (window.app.step == 1 && !$('#upload-photo').is(':visible'))) && window.app.orientation == 'landscape') {
 				window.app.screenLock('Please change orientation to portrait view.')
 			} else {
 				window.app.screenUnlock();

@@ -36,7 +36,7 @@ if (count($_POST)) {
 
 	$mail->From = 'info@frontgatevinyl.com';
 	$mail->FromName = 'Info';
-	$mail->addAddress('xxx@xxx.xxx');
+	$mail->addAddress('info@frontgatevinyl.com');
 
 	$mail->WordWrap = 50;
 	$mail->isHTML(true);
