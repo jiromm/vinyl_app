@@ -743,21 +743,12 @@ var App = Class({
 	},
 	initOrientationDetector: function() {
 		setInterval(function() {
-			window.app.detectOrientationChange();
-
-			if ($(window).width() < 768 && (window.app.step != 1 || (window.app.step == 1 && !$('#upload-photo').is(':visible'))) && window.app.orientation == 'landscape') {
+			if ($(window).width() < 768 && (window.app.step != 1 || (window.app.step == 1 && !$('#upload-photo').is(':visible'))) && $(window).width() > $(window).height()) {
 				window.app.screenLock('Please change orientation to portrait view.')
 			} else {
 				window.app.screenUnlock();
 			}
-		}, 500);
-	},
-	detectOrientationChange: function() {
-		if ($(window).width() > $(window).height()) {
-			this.orientation = 'landscape';
-		} else {
-			this.orientation = 'portrait';
-		}
+		}, 700);
 	},
 	getCategories: function() {
 		return $('.fence-categories').find('a');

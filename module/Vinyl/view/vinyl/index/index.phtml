@@ -19,4 +19,11 @@
 		z-index: 999999;
 	}
 </style>
-<iframe src="/intro.html?v=1.1"></iframe>
+<script>
+	$(function() {
+		if ($(window).width() < 768) {
+			window.location.href = '/app.html';
+		}
+	});
+</script>
+<iframe src="/intro.html?v=1.2" id="iframe"></iframe>
