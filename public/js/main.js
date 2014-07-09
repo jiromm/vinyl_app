@@ -16,6 +16,7 @@ var App = Class({
 		this.next = $('.next button');
 		this.submitAppointment = $('.submit-appointment');
 		this.submitAppointmentFormButton = $('.appointment-form-submit');
+		this.submitAppointmentFormButtonCancel = $('.appointment-form-cancel');
 
 		this.pages = $('.page');
 		this.fences = $('.fences').find('.swiper-slide');
@@ -401,21 +402,18 @@ var App = Class({
 						remarks: $('#remarks').val()
 					}
 				}).done(function(data) {
-					form.fadeOut('fast', function() {
-						if (data.status == 'success') {
-							window.location.href = 'http://frontgatevinyl.com/thankyou.html';
-						} else {
-							$(this).button('reset');
-							parent.find('.alert-success').fadeIn('fast');
-						}
-					});
+					window.top.location.href = 'http://frontgatevinyl.com/thankyou.html?p=' + image;
 				}).fail(function() {
-					$(this).button('reset');
-					form.fadeOut('fast', function() {
-						parent.find('.alert-success').fadeIn('fast');
-					});
+					window.top.location.href = 'http://frontgatevinyl.com/thankyou.html?p=' + image;
 				});
 			}
+		});
+
+		// Cancel Appointment Submittion
+		this.submitAppointmentFormButtonCancel.on('click', function(e) {
+			e.preventDefault();
+
+			window.app.setStep(3);
 		});
 
 		// Category Arrow click Next
@@ -458,6 +456,9 @@ var App = Class({
 	},
 	hideHeader: function() {
 		$('.stick-head').hide();
+	},
+	showHeader: function() {
+		$('.stick-head').show();
 	},
 	hideFooter: function() {
 		$('.stick-foot').hide();
@@ -505,6 +506,7 @@ var App = Class({
 
 				break;
 			case 3:
+				this.showHeader();
 				this.initExport();
 				this.hideFooter();
 				$('.hint').hide();
@@ -623,7 +625,7 @@ var App = Class({
 			this.isEdited = true;
 			this.fenceTools.show();
 			this.fenceChoice.hide();
-			this.fenceEdit.text('Return');
+			this.fenceEdit.text('Done');
 			$('.arrow-cat').hide();
 		} else {
 			this.isEdited = false;
