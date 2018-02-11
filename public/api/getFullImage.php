@@ -31,7 +31,7 @@ if (count($_POST)) {
 	$over = WideImage::load($overUrl)->crop($cropLeft, 'top', $width - ($width - $cropRight) - $cropLeft, '100%')->resize($overWidth, $overHeight);
 	$new = $base->merge($over, $left + $cropLeft * $overWidth / $width, $top, 100);
 	$new = $new->merge($watermark, 'right', 'bottom', 100);
-	$name = mt_rand(1000000000, 9999999999) . '.jpg';
+	$name = mt_rand(10000000, 99999999) . '.jpg';
 	$new->saveToFile($destinationDirectory . $name, 95);
 
 	$result = [

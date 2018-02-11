@@ -1,4 +1,4 @@
 <?php
 
-define('HOST', 'http://vinyl_app/');
+define('HOST', 'http://vinyl/');
 define('BASE_DIR', ''); // vinyl/
